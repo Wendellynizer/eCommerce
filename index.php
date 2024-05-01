@@ -1,10 +1,16 @@
+<?php 
+	require_once "config/connection.php";
+	$conn = DB::connect();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
       <title>ChipTech | Home</title>
-      <link rel="stylesheet" type="text/css" href="assets/bootstrap/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="css/style.css">
-      <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+      <script src="assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   
   <body>
@@ -72,7 +78,8 @@
 				</div>
 			</div>
 		</div>
-	</nav> <!--Navbar End-->
+	</nav> 
+	<!--Navbar End-->
 
 	<!--Modal-->
 	<div class="modal fade" id="exampleModal" tabindex="-1">
@@ -232,6 +239,7 @@
 			</button>
 		</div>
 	</div>
+	<!-- Carousel End -->
     
 	<!--Items-->
 	<div class="container-fluid my-5">
@@ -283,6 +291,10 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- test -->
+
+	
     
 	<footer class="py-4 bg-dark text-white text-center">
 		<div class="container">

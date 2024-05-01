@@ -1,9 +1,14 @@
+<?php
+require_once "../buyer/signin.php";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>ChipTech | Login</title>
-    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/bootstrap.min.css">
-    <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {  
             background-image: url('../assets/images/Login-Signup-Images/LoginBg.png');
@@ -24,26 +29,20 @@
                     <h1 class="mt-3">E-Commerce</h1>
                     <p>Remember everything is important.</p>
                 </div>
-                <div class="mt-4 d-grid gap-2">
-                    <button class="btn btn-primary btn-block" style="border-radius: 1rem;">
-                        <img src="../assets/images/Login-Signup-Images/GoogleIcon.png" alt="Google Icon" width="20px" class="me-2"> Sign in with Google
-                    </button>
-                </div>
-                <form>
+
+
+                <form action="../operations/login.php" method="POST">
                     <div class="form-group mt-4">
                         <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" name="email">
                     </div>
                     <div class="form-group">
                         <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
                     </div>
-                    <div class="form-group form-check mt-2">
-                        <input type="checkbox" class="form-check-input" id="rememberCheck">
-                        <label class="form-check-label" for="rememberCheck">Remember me</label>
-                    </div>
+
                     <div class="text-center mt-3">
-                        <a href="Home.html" class="btn btn-primary">Sign in</a>
+                        <button type="submit" href="Home.html" class="btn btn-primary w-100">Sign in</button>
                     </div>
                     <div class="text-center mt-5">
                         <p>Don't have an account? <a href="signup.php">Create account</a></p>
