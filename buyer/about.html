@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="/others/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/Style.css">
+        <script src="/others/bootstrap.bundle.min.js"></script>
+
+        <title>ChipTech | About Us</title>
+    </head>
+
+    <body>
+          <!--Navigation-->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+              <div class="container-fluid">
+                <a class="navbar-brand fs-4" href="Home.html">
+                  <img src="/Images/Logo/Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                  ChipTech
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+
+              <div class="offcanvas-header text-light border-bottom">
+                    <a class="navbar-brand fs-4" href="#">
+                      <img src="/Images/Logo/Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                      ChipTech
+                    </a>
+                    <button type="button " class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"></button>
+                  </div>
+        
+                  <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                    <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+                      <li class="nav-item mx-2">
+                        <a class="nav-link" href="Home.html">Home</a>
+                      </li>
+                      <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown">
+                          Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="processor.html">Processor</a></li>
+                          <li><a class="dropdown-item" href="ram.html">RAM</a></li>
+                          <li><a class="dropdown-item" href="gpu.html">GPU</a></li>
+                          <li><a class="dropdown-item" href="Motherboard.html">Motherboard</a></li>
+                        </ul>
+                      </li>
+        
+                      <li class="nav-item mx-2">
+                        <a class="nav-link active" href="about.html">About Us</a>
+                      </li>
+                      <li class="nav-item mx-2">
+                        <a class="nav-link mx-2" href="HowToBuy.html">How to Buy</a>
+                      </li>
+                      <li class="nav-item mx-2">
+                        <a class="nav-link" href="warranty.html">Warranty</a>
+                      </li>
+        
+                    </ul>
+                  <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="/Images/Home Images/cart-svgrepo-com.png" alt="" width="30px"></a>
+                        <a href="#" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Login</a>
+                        <a href="#" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Sign up</a>
+                  </div>
+                  </div>
+                  </div>
+              </div>
+          </nav>
+
+       <!--Modal-->
+	<div class="modal fade" id="exampleModal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<div class="modal-body">
+					<div class="card mb-3" style="max-width: 540px;">
+						<a type="button" class=" position-absolute top-0 end-0 me-1"><img src="/Images/Home Images/cancel-close-svgrepo-com.png" alt="" style="width: 10px; height: 10px;"></a>
+						
+						<div class="row g-0">
+							<div class="col-md-6 my-auto">
+								<img src="/Images/GPU/Nvidia/ASUS GeForce RTX 4090 24GB ROG Strix OC GDDR6X Graphics Card.png" class="card-img-top" alt="">
+							</div>
+
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title">ASUS GeForce RTX 4090 24GB ROG Strix OC GDDR6X Graphics Card</h5>
+									<p class="card-text fs-5">₱129,895.00</p>
+									<div class="input-group mb-3" style="width: 120px;">
+										<button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+										<input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+										<button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="card mb-3" style="max-width: 540px;">
+						<a type="button" class="position-absolute top-0 end-0 me-1" > <img src="/Images/Home Images/cancel-close-svgrepo-com.png" alt="" style="width: 10px; height: 10px;"></a>
+
+						<div class="row g-0">
+							<div class="col-md-6 my-auto">
+								<img src="/Images/Processors/Amd Processor/AMD Ryzen 5 5600 6-Core 3.5 GHz Socket AM4 65W 100-100000927BOX Desktop Processor.png" class="card-img-top" alt="">
+							</div>
+
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title">AMD Ryzen 5 5600 6-Core 3.5 GHz Socket AM4 65W 100-100000927BOX Desktop Processor</h5>
+									<p class="card-text fs-5">₱7,895.00</p>
+									<div class="input-group mb-3" style="width: 120px;">
+										<button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+										<input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+										<button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Checkout</a>
+				</div>
+			</div>
+		</div>
+    </div>
+
+        <!--Introduction-->
+        <div class="container-fluid bg-dark text-light p-5">
+            <h3 class="fw-bolder text-center mb-3 display">Welcome to ChipTech - Your Ultimate Destination for Computer Hardware</h3>
+            <p class="text-center px-5">
+                At ChipTech, we are dedicated to delivering 
+                top-notch computer hardware solutions to meet 
+                all your needs. As a premier computer hardware 
+                shop, we strive to provide you with a seamless 
+                shopping experience and unrivaled customer service.
+                With a wide range of high-quality components and peripherals, 
+                we cater to tech enthusiasts, gamers, professionals, 
+                and everyone in between. Whether you're looking to build 
+                a custom gaming rig, upgrade your office workstation, 
+                or enhance your home entertainment system, we have the 
+                perfect hardware solutions for you.
+            </p>
+
+            <div class="text-center mt-5">
+              <a class="btn btn-lg btn-outline-light text-center" href="Home.html">See Products</a>
+            </div>
+        </div>
+
+        <!--Team Members-->
+        <div class="container-fluid text-center mt-5 ">
+            <h1 class="fw-bolder pb-5">Meet our Team</h1>
+
+            <div class="row"> 
+                <div class="col-lg col-md-6">
+                  <img class="border mb-2" src="/Images/Team/wendel.jpg" width="200" alt="">
+                  <h5>Wendel Sabelo</h5>
+                  <p><b>Developer</b></p>
+              </div>
+
+                <div class="col-lg col-md-6">
+                    <img class="border mb-2" src="/Images/Team//marlou.jpg" width="200" alt="">
+                    <h5>Marlou Requillo</h5>
+                    <p><b>Developer</b></p>
+                </div>
+
+                <div class="col-lg col-md-6">
+                    <img class="border mb-2" src="/Images/Team/bj.jpg" width="200" alt="">
+                    <h5>Belly Joe Basadre</h5>
+                    <p><b>Team Leader</b></p>
+                </div>
+
+                <div class="col-lg col-md-6">
+                    <img class="border mb-2" src="/Images/Team/vhans.jpg" width="200" alt="">
+                    <h5>Vhans Chester Cabaltera</h5>
+                    <p><b>Developer</b></p>
+                </div>
+
+                <div class="col-lg ">
+                    <img class="border mb-2" src="/Images/Team/rommel.jpg" width="200" alt="">
+                    <h5>Lee Rommel Flandez</h5>
+                    <p><b>Developer</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid text-center bg-dark text-light p-5">
+              <h1 class="fw-bolder p-3">Mission</h1>
+              <p class="px-5">
+                Our mission at ChipTech is to provide customers with top-notch computer hardware solutions 
+                that exceed their expectations. We are committed to offering a seamless shopping experience, 
+                unrivaled customer service, and a wide range of high-quality components and peripherals. 
+                We aim to cater to the diverse needs of tech enthusiasts, gamers, professionals, and 
+                individuals seeking to enhance their computing experience.
+              </p>
+        </div>
+
+          <div class="ccontainer-fluid text-center p-5">
+              <h1 class="fw-bolder pb-3">Vision</h1>
+              <p class="px-5">
+                Our vision is to be the ultimate destination for computer hardware, recognized for our 
+                exceptional products, expertise, and customer-centric approach. We strive to stay at the 
+                forefront of technology trends, constantly expanding our product offerings to meet the 
+                evolving needs of our customers. By fostering long-lasting relationships and providing 
+                innovative solutions, we aim to be the go-to choice for individuals and businesses seeking 
+                reliable and cutting-edge computer hardware.
+              </p>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer class="py-4 bg-dark text-light text-center">
+            <div class="container">
+              <p>&copy; 2023 ChipTech. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cHIPtECH | Motherboard</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="Style.css">
+    <script src="bootstrap.bundle.min.js"></script>
+
+     
+    
+</head>
+<body style="background-color: white;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-4" href="#">
+                <img src="Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                ChipTech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header text-light border-bottom bg-dark">
+                    <a class="navbar-brand fs-4" href="#">
+                        <img src="Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                        ChipTech
+                    </a>
+                    <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0 bg-dark">
+                    <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+                        <li class="nav-item mx-2">
+                            <a class="nav-link active" aria-current="page" href="Home.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown mx-2">
+                            <a class="nav-link dropdown-toggle" href="" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                                <li><a class="dropdown-item" href="processor.html">Processor</a></li>
+                                <li><a class="dropdown-item" href="Ram.html">Ram</a></li>
+                                <li><a class="dropdown-item" href="GPU.html">GPU</a></li>
+                                <li><a class="dropdown-item" href="Motherboard.html">Motherboard</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" aria-current="page" href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link mx-2" aria-current="page" href="#">How to Buy</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" aria-current="page" href="Warranty.html">Warranty</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="cart-svgrepo-com.png" alt="" width="30px"></a>
+                        <a href="Login.html" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Login</a>
+                        <a href="Signup.html" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!--
+    <div class="container-fluid pt-5 p-xxl-5" style="background-color: white;">
+        <div class="row  px-5">
+            <div class="col mb-2">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-6 my-auto">
+                    <img src="21.jpg" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Asrock B760M Steel Legend WiFi LGA 1700 Intel Motherboard</h5>
+                      <p class="card-text fs-5">₱10,295.00  </p>
+                      <div class="input-group mb-3" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                        <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                        <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                      </div>
+                      <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-2">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-6 my-auto">
+                    <img src="22.jpg" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Asus Prime B660M-K D4 LGA1700 Intel 12th Gen mATX Motherboard</h5>
+                      <p class="card-text fs-5">₱6,400.00</p>
+                      <div class="input-group mb-3" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                        <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                        <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                      </div>
+                      <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-2">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-6 my-auto">
+                    <img src="23.jpg" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Gigabyte H610M H DDR4 LGA 1700 LGA Motherboard</h5>
+                      <p class="card-text fs-5">₱4,695.00 </p>
+                      <div class="input-group mb-3" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                        <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                        <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                      </div>
+                      <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-2">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-6 my-auto">
+                    <img src="24.jpg" class="card-img-top" alt="...">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title">Gigabyte Z790 Aorus Elite AX LGA 1700 Intel Motherboard</h5>
+                      <p class="card-text fs-5">₱17,895.00 </p>
+                      <div class="input-group mb-3" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                        <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                        <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                      </div>
+                      <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <div class="row mx-5 px-5">
+        <div class="col mb-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-6 my-auto">
+                <img src="25.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">MSI MAG B660M Mortar WIFI DDR4 LGA 1700 Intel Motherboard</h5>
+                  <p class="card-text fs-5">₱9,495.00</p>
+                  <div class="input-group mb-3" style="width: 120px;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                    <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                    <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                  </div>
+                  <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-6 my-auto">
+                <img src="26.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">MSI MAG Z690 Tomahawk WIFI LGA1700 DDR4 Intel Motherboard</h5>
+                  <p class="card-text fs-5">₱14,950.00</p>
+                  <div class="input-group mb-3" style="width: 120px;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                    <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                    <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                  </div>
+                  <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-6 my-auto">
+                <img src="27.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">Asrock B760M PG SONIC WiFi LGA 1700 Intel Motherboard</h5>
+                  <p class="card-text fs-5">₱10,995.00</p>
+                  <div class="input-group mb-3" style="width: 120px;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                    <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                    <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                  </div>
+                  <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-2">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-6 my-auto">
+                <img src="30.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">Asus ROG STRIX B760-A Gaming WIFI DDR4 Motherboard</h5>
+                  <p class="card-text fs-5">₱13,995.00 </p>
+                  <div class="input-group mb-3" style="width: 120px;">
+                    <button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+                    <input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+                    <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+                  </div>
+                  <a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Add to cart</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+-->
+<div class="container-fluid mt-5">
+  <h1 class="display fw-bolder">Motherboard</h1>
+  <div class="row mt-2">
+      <div class="col-12 col-sm-6 col-md-4 my-2">
+          <div class="card p-1">
+              <img src="m5.png" alt="" class="img-fluid">
+              
+              <div class="card-body">
+                  <h5 class="card-title display">MSI MAG B550 Tomahawk | Max WIFI Gaming Motherboard</5>
+                  <p class="card-text mt-3">₱9,495.00</p>
+              </div>
+
+              <a href="" class="btn btn-outline-dark">Add to Cart</a>
+          </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 my-2">
+          <div class="card p-1">
+              <img src="m4.png" alt="" class="img-fluid">
+              
+              <div class="card-body">
+                  <h5 class="card-title display">Gigabyte B550I Aorus PRO AX Mini-ITX Motherboard</5>
+                  <p class="card-text mt-3">₱10,695.00 </p>
+              </div>
+
+              <a href="" class="btn btn-outline-dark">Add to Cart</a>
+          </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 my-2">
+          <div class="card p-1">
+              <img src="m3.png" alt="" class="img-fluid">
+              
+              <div class="card-body">
+                  <h5 class="card-title display">Gigabyte B550I Aorus PRO AX Mini-ITX Motherboard</5>
+                  <p class="card-text mt-3">₱10,695.00</p>
+              </div>
+
+              <a href="" class="btn btn-outline-dark">Add to Cart</a>
+          </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-4 my-2">
+          <div class="card p-1">
+              <img src="m2.png" alt="" class="img-fluid">
+              
+              <div class="card-body">
+                  <h5 class="card-title display">Gigabyte B450M K AM4 Motherboard</5>
+                  <p class="card-text mt-3">₱3,495.00 </p>
+              </div>
+
+              <a href="" class="btn btn-outline-dark">Add to Cart</a>
+          </div>
+      </div>
+
+    <div class="col-12 col-sm-6 col-md-4 my-2">
+      <div class="card p-1">
+          <img src="m1.png" alt="" class="img-fluid">
+          
+          <div class="card-body">
+              <h5 class="card-title display">Gigabyte B450M DS3H V2 AMD AM4 Motherboard</5>
+              <p class="card-text mt-3">₱4,195.00</p>
+          </div>
+
+          <a href="" class="btn btn-outline-dark">Add to Cart</a>
+      </div>
+  </div>
+
+  <div class="col-12 col-sm-6 col-md-4 my-2">
+    <div class="card p-1">
+        <img src="/26.JPG" alt="" class="img-fluid">
+        
+        <div class="card-body">
+            <h5 class="card-title display">Gigabyte Z790M Aorus Elite AX LGA 1700 Intel Motherboard</5>
+            <p class="card-text mt-3">₱14,995.00</p>
+        </div>
+
+        <a href="" class="btn btn-outline-dark">Add to Cart</a>
+    </div>
+</div>
+  </div>
+</div>
+</body>
+</html>

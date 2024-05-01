@@ -1,0 +1,26 @@
+body {
+    margin: 0%;
+    padding: 0%;
+    background-image: url('../assets/images/to Buy/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+  
+.sidebar {
+    background-color: black;
+}
+  
+
+.sidebar {
+    background-color: black;
+}
+
+.dropdown-menu {
+    background-color: rgb(41, 41, 41);
+}
+
+.dropdown-item {
+    color: white;
+}

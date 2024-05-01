@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Buy</title>
+    <link rel="stylesheet" href="/others/bootstrap.min.css">
+    <script src="/others/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/Cascade.css" />
+  </head>
+  
+  <body>
+    <!--Navigation-->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+              <div class="container-fluid">
+                <a class="navbar-brand fs-4" href="Home.html">
+                  <img src="/Images/Logo/Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                  ChipTech
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+
+              <div class="offcanvas-header text-light border-bottom">
+                    <a class="navbar-brand fs-4" href="#">
+                      <img src="/Images/Logo/Logo.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+                      ChipTech
+                    </a>
+                    <button type="button " class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas"></button>
+                  </div>
+        
+                  <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                    <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+                      <li class="nav-item mx-2">
+                        <a class="nav-link" href="Home.html">Home</a>
+                      </li>
+                      <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown">
+                          Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="processor.html">Processor</a></li>
+                          <li><a class="dropdown-item" href="ram.html">RAM</a></li>
+                          <li><a class="dropdown-item" href="gpu.html">GPU</a></li>
+                          <li><a class="dropdown-item" href="Motherboard.html">Motherboard</a></li>
+                        </ul>
+                      </li>
+        
+                      <li class="nav-item mx-2">
+                        <a class="nav-link																																																																																																				" href="about.html">About Us</a>
+                      </li>
+                      <li class="nav-item mx-2">
+                        <a class="nav-link mx-2 active" href="HowToBuy.html">How to Buy</a>
+                      </li>
+                      <li class="nav-item mx-2">																																	
+                        <a class="nav-link" href="warranty.html">Warranty</a>
+                      </li>
+        
+                    </ul>
+                  <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="/Images/Home Images/cart-svgrepo-com.png" alt="" width="30px"></a>
+                        <a href="#" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Login</a>
+                        <a href="#" class="text-dark text-decoration-none px-3 py-1" style="background-color: white; border-radius: 1rem;">Sign up</a>
+                  </div>
+                  </div>
+                  </div>
+              </div>
+          </nav>
+
+       <!--Modal-->
+	<div class="modal fade" id="exampleModal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<div class="modal-body">
+					<div class="card mb-3" style="max-width: 540px;">
+						<a type="button" class=" position-absolute top-0 end-0 me-1"><img src="/Images/Home Images/cancel-close-svgrepo-com.png" alt="" style="width: 10px; height: 10px;"></a>
+						
+						<div class="row g-0">
+							<div class="col-md-6 my-auto">
+								<img src="/Images/GPU/Nvidia/ASUS GeForce RTX 4090 24GB ROG Strix OC GDDR6X Graphics Card.png" class="card-img-top" alt="">
+							</div>
+
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title">ASUS GeForce RTX 4090 24GB ROG Strix OC GDDR6X Graphics Card</h5>
+									<p class="card-text fs-5">₱129,895.00</p>
+									<div class="input-group mb-3" style="width: 120px;">
+										<button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+										<input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+										<button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="card mb-3" style="max-width: 540px;">
+						<a type="button" class="position-absolute top-0 end-0 me-1" > <img src="/Images/Home Images/cancel-close-svgrepo-com.png" alt="" style="width: 10px; height: 10px;"></a>
+
+						<div class="row g-0">
+							<div class="col-md-6 my-auto">
+								<img src="/Images/Processors/Amd Processor/AMD Ryzen 5 5600 6-Core 3.5 GHz Socket AM4 65W 100-100000927BOX Desktop Processor.png" class="card-img-top" alt="">
+							</div>
+
+							<div class="col-md-6">
+								<div class="card-body">
+									<h5 class="card-title">AMD Ryzen 5 5600 6-Core 3.5 GHz Socket AM4 65W 100-100000927BOX Desktop Processor</h5>
+									<p class="card-text fs-5">₱7,895.00</p>
+									<div class="input-group mb-3" style="width: 120px;">
+										<button class="btn btn-outline-secondary" type="button" id="button-minus">-</button>
+										<input type="text" class="form-control text-center" value="1" min="1" max="100" id="quantity">
+										<button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<a href="#" class="btn text-light" style="border-radius: 1rem; background-color: #121212;">Checkout</a>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <div class="container-fluid text-light gy-5">
+      <h3 class="text-center mt-4">How to Purchase Product</h3>
+      <h6 class="text-center mb-3">Step by Step Proccess</h6>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <img src="/Images/How to Buy/ryzen-logo.png" alt="" width="100%" />
+        </div>
+        <div class="col-md-4">
+          <img src="/Images/Logo/Logo.png" alt="" width="100%" />
+        </div>
+        <div class="col-md-4">
+          <img src="/Images/How to Buy/intel-logo.png" alt="" width="100%" />
+        </div>
+      </div>
+      <h5 class="text-center mt-4 mb-4">
+        Read and Follow || ChipTech Guide below
+      </h5>
+      <ol>
+        <li><p>Browse and Search for items to buy.</p></li>
+        <li><p>Add to Cart, Check Out and Place Your Order.</p></li>
+        <li>
+          <p>
+            Enter account information for registration and shipping details. You
+            may login or register via social media accounts like Google or Apple
+            ID for faster account creation.
+          </p>
+        </li>
+        <li><p>Monitor your My Account Dashboard for order status.</p></li>
+        <ol>
+          <li>
+            <i>Hold Status - subject for confirmation or waiting payment.</i>
+          </li>
+          <li>
+            <i
+              >Processing Status - order is confirmed and for item
+              allocation.</i
+            >
+          </li>
+          <li><i> Status - order is received by the end user.</i></li>
+          <li>
+            <i>
+              Refund Status - order payment reversal or manual refund is
+              processed.</i
+            >
+          </li>
+          <li>
+            <i
+              >Cancelled Status - payment is declined or awaiting payment
+              timeout and item was sold out upon checkout. Please order again.
+              Thank you!</i
+            >
+          </li>
+        </ol>
+      </ol>
+
+      <div class="container-fluid mt-4 text-center gy-5">
+        <h3 class="mt-5 mb-4  ">Select Various Product Sales</h3>
+        <div class="row mt-4 g-4">
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/AMD Ryzen.png"
+              alt="AMD Ryzen 5 5500"
+              width="100px"
+            />
+          </div>
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/Intel Core3.png"
+              alt="Intel Core i3"
+              width="100px"
+            />
+          </div>
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/Radeon Eagle.png"
+              alt="Gigabyte Radeon RX 6600"
+              width="100px"
+            />
+          </div>
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/Intel Core5.png"
+              alt="Intel Core i5"
+              width="100px"
+            />
+          </div>
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/Radeon Gaming.png"
+              alt="Gigabyte Radeon RX 7900"
+              width="100px"
+            />
+          </div>
+          <div class="col-md-2">
+            <img
+              src="/Images/How to Buy/ASUS GeForce.png"
+              alt="ASUS Graphics Card"
+              width="100px"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-2 text-light text-center">
+      <h4 class=" text-warning">FAQs</h4>
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" placeholder="examplename@gmail.com" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label"></label>
+          <p>If you have Questions just leave a comment below:</p>
+        </label>
+        <textarea class="form-control" rows="3" placeholder="Comment or Feedback"></textarea>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-outline-light" type="button">Submit</button>
+      </div>
+    </div>
+    <div class="container-fluid text-light bg-dark p-5 mt-4 text-center bg-opacity-75">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="/Logo.png" alt="ChipTech Logo" width="100px">
+        <h5>ChipTech</h5>
+
+        
+        <p><img src="/Images/How to Buy/phone-logo.png" alt="Phone Call Icon" width="50px">→  (077) 600-5759, (077) 600-5838</p>
+
+          <b>Payment and Shipping</b>
+          <p>PAYMENT METHODS: Cash on Delivery | Credit Card Visa or Mastercard | Gcash | Paymaya | GrabPay | Direct Deposit via OTC or 
+            Mobile Banking Fund Transfer with Instapay or Pesonet | ShopeePay | GrabPay | Paypal | Atome Installment | Billease installment 
+            | Bitcoin | Ethereum | Cebuana | 7Eleven | Palawan Express | SM Malls | Robinsons Mall | BPI | BDO | Metrobank | RCBC</p>
+            
+            <p>DELIVERY OPTIONS: LBC Express | JnT Express | Gogoexpress | Bus Waybill and other options base on location.</p>
+
+      </div>
+      <div class="col-md-4">
+        <b>Get a chance to get FREE Shipping Vouchers and DISCOUNT Coupon upon Subscribing</b>
+
+        <p>ChipTech Company trusted online retailer of IT and electronic gadgets, operating in the Philippines. 
+          Our primary goal is to offer our customers the largest selection of tech products and exceptional service across the country. 
+          To achieve this, we constantly strive to innovate and enhance our user-friendly website, mobile apps, multiple easy payment methods, 
+          brand-certified warranties, dynamic fulfillment branches, and broad shopping platform.</p>
+
+          <p>We firmly believe in keeping up with our innovative approach to deliver a seamless online shopping experience 
+            while ensuring top-notch quality products and services to our customers.</p>
+      </div>
+      <div class="col-md-4">
+       <p>ADD to CART & CHECK OUT</p>
+       <p>Monitor your My Account Dashboard for order status. We encourage you to visit dashboard within 1hr to 3hrs and 
+        beyond after check out to be sure order is confirmed specially for overseas orders.</p>
+        <p>Orders are subject for confirmation realtime or up to 3 hrs after check out.</p>
+        <p>Disclaimer: All product names, logos and details in this website are for identification purposes only and 
+          are trademarks of their respective owners.</p>
+
+          <b>“Your Shopping Experience is our Priority.”</b> 
+        <p>Home
+          Shop
+          How to Buy
+          Warranty Policy
+          About Us
+          Privacy Policy
+          Contact Us
+          My Account
+          Intel PC Builder
+          AMD PC Builder
+          Facebook Page
+          Instagram Account
+          Twitter Account.</p>
+      </div>
+      
+    </div>
+  </div>
+  <div class="container-fluid text-center text-light bg-dark"> 
+        <div class="row">
+              <div class="col-md-12"> 
+                <h5>Alternate Contacts:</h5>
+                <a href="#"> <img src="/Images/How to Buy/fb.png" alt="" width="50px"></a>
+                <a href="#"> <img src="/Images/How to Buy/twitter.png" alt="" width="50px"></a>
+                <a href="#"> <img src="/Images/How to Buy/insta.png" alt="" width="50px"></a>
+                <a href="#"> <img src="/Images/How to Buy/tiktok.png" alt="" width="50px"></a>
+                <h6>© ChipTech 2023 All Rights Reserved</h6>
+              </div> 
+        </div>
+  </div>
+ 
+  </body>
+</html>
