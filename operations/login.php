@@ -3,10 +3,16 @@ session_start();
 require_once "../config/connection.php";
 $conn = DB::connect();
 
-if($_POST["email"] && $_POST["password"]) {
+if(isset($_POST["login"])) {
+
+    if(empty($_POST["email"]) || empty($_POST["password"])) {
+        header("location: ../buyer/signin.php");
+        exit;
+    }
+
     $email = $_POST["email"];
     $password = $_POST["password"];
-
+    
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
     $stmt->bind_param("ss", $email, $password);
     
@@ -14,7 +20,7 @@ if($_POST["email"] && $_POST["password"]) {
         $result = $stmt->get_result();
 
         if($result->num_rows <= 0) {
-            header("location: ../buyer/signin.php?error");
+            header("location: ../buyer/signin.php?error=noaccountfound");
             return;
         }
 
@@ -24,6 +30,6 @@ if($_POST["email"] && $_POST["password"]) {
 
     header("location: ../index.php");
 } else {
-    header("location: ../buyer/signup.php");
+    header("location: ../buyer/signin.php");
 }
 ?>

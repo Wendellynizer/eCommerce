@@ -1,0 +1,108 @@
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
+
+:root {
+    --primary: #f26667;
+    --primary-dark: #da5f5f;
+    --primary-darker: #c75454;
+    ---dark: #222;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-dark {
+    background-color: var(---dark) !important;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-dark {
+    color: var(---dark) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary) !important;
+    border: 0;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark) !important;
+}
+
+.btn-primary:active {
+    background-color: var(--primary-darker) !important;
+}
+
+.active {
+    color: red !important;
+}
+
+
+/* nav */
+/* .profile {
+    height: 100px;
+} */
+
+.notification span {
+    background-color: var(--primary);
+    color: white !important;
+    font-size: 0.8rem;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+.profile img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 100%;
+
+    cursor: pointer;
+}
+
+.products-section {
+    padding-top: 12rem;
+}
+
+.product {
+    height: 400px;
+    max-height: 500px;
+
+    transition: all 0.1s;
+}
+
+.product:hover {
+    outline: 3px solid var(--primary) !important;
+}
+
+.product .product-img {
+    max-width: 100%;
+    /* height: 300px; */
+    max-height: 250px; 
+    object-fit: cover;
+    border-radius: 0;
+
+    transition: all 0.2s;
+} 
+
+.card .product-img:hover {
+    transform: scale(1.5);
+}
+
+.price-container {
+    height: 100%;
+}

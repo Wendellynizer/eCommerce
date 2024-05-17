@@ -3,16 +3,29 @@ session_start();
 require_once "../config/connection.php";
 $conn = DB::connect();
 
-if($_POST["email"] && $_POST["password"]) {
+
+/** FIELDS
+ * email
+ * password
+ 
+*/
+
+if(isset($_POST["register"])) {
+
+    if(empty($_POST["email"]) || empty($_POST["password"])) {
+        header("location: ../buyer/signup.php?error=incorrectinput");
+        exit;
+    }
+
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?,?)");
+    $stmt = $conn->prepare("CALL CreateUser(?,?)");
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
 
-    header("location: ../buyer/signin.php");
-} else {
-    header("location: ../buyer/signup.php");
+    // header("location: ../buyer/signin.php");
 }
+
+header("location: ../buyer/signup.php?error=incorrectinput");
 ?>
