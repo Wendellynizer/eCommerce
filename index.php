@@ -9,6 +9,9 @@ require_once "sessionCheck.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 
+    <!-- icon -->
+    <link rel="shortcut icon" href="../assets/images/logo/logo.png" type="image/x-icon">
+
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
@@ -27,7 +30,7 @@ require_once "sessionCheck.php";
         <nav class="container-xxl py-2 px-sm-5 top-nav">
             <div class="d-flex justify-content-between align-items-center">
                 <h2>
-                    <a href="index.html">
+                    <a href="index.php">
                         <img src="assets/images/logo/logo.png" alt="ShopX" width="200">
                     </a>
                 </h2>
@@ -35,11 +38,11 @@ require_once "sessionCheck.php";
                 <div class="d-none d-md-block">
                     <div class="d-flex align-items-center">
                         <a href="" class="text-decoration-none fw-bold active">HOME</a>
-                        <a href="" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
-                        <a href="" class="ms-5 text-dark text-decoration-none">MY LISTINGS</a>
+                        <a href="buyer/products.php" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
+                        <a href="buyer/listings.php" class="ms-5 text-dark text-decoration-none">MY LISTINGS</a>
 
                         <div class="notification ms-5 d-flex align-items-center position-relative">
-                            <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
+                            <a href="buyer/notifications.php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
                             <span class="text-dark" style="user-select: none;">99</span>
                         </div>
@@ -53,7 +56,7 @@ require_once "sessionCheck.php";
 
                             <ul class="dropdown-menu dropdown-menu-end rounded-1 py-0 profile-dropdown">
                                 <li><a class="dropdown-item py-2" href="buyer/user.php">My Account</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Purchases</a></li>
+                                <li><a class="dropdown-item py-2" href="buyer/purchases.php">Purchases</a></li>
                                 <li><a class="dropdown-item py-2" href="operations/logout.php">Logout</a></li>
                             </ul>
                         </div>
@@ -64,7 +67,7 @@ require_once "sessionCheck.php";
                 <!-- for mobile -->
                 <div class="d-md-none d-sm-flex d-xs-flex gap-5">
                     <div class="notification ms-5 d-flex align-items-center position-relative">
-                        <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
+                        <a href="buyer/notifications.php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
                         <span class="text-dark" style="user-select: none;">99</span>
                     </div>
@@ -116,6 +119,7 @@ require_once "sessionCheck.php";
                                 <div class="d-flex align-items-center justify-content-between w-100">
                                     <p class="card-text h4 text-primary fw-bold">₱150</p>
                                     <p class="card-text" style="font-size: 0.8rem;">Very Good</p>
+                                    
                                 </div>
                                 
                               </div>

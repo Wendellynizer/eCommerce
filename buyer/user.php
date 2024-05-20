@@ -24,21 +24,9 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
 
-    <!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css">
-
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-
-    <!-- custom css -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <?php require_once "../includes/header.php" ?>
 </head>
 
 <body>
@@ -56,7 +44,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                     <div class="d-flex align-items-center">
                         <a href="../index.php" class="text-dark text-decoration-none">HOME</a>
                         <a href="" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
-                        <a href="" class="ms-5 text-dark text-decoration-none">MY LISTINGS</a>
+                        <a href="listings.php" class="ms-5 text-dark text-decoration-none">MY LISTINGS</a>
 
                         <div class="notification ms-5 d-flex align-items-center position-relative">
                             <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
@@ -73,7 +61,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
 
                             <ul class="dropdown-menu dropdown-menu-end rounded-1 py-0 profile-dropdown">
                                 <li><a class="dropdown-item py-2" href="user.php">My Account</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Purchases</a></li>
+                                <li><a class="dropdown-item py-2" href="purchases.php">Purchases</a></li>
                                 <li><a class="dropdown-item py-2" href="../operations/logout.php">Logout</a></li>
                             </ul>
                         </div>
@@ -117,14 +105,14 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
 
         <!-- contents -->
         <div class="row">
-            <div class="col-3 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <a href="user.php" class="text-dark text-decoration-none fw-bold">Account Profile</a>
-                <a href="" class="text-dark text-decoration-none">Purchases</a>
-                <a href="" class="text-dark text-decoration-none">My Cart</a>
-                <a href="" class="text-dark text-decoration-none">Notifications</a>
+            <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
+                <a href="user.php" class="text-dark text-decoration-none fw-bold active">Account Profile</a>
+                <a href="purchases.php" class="text-dark text-decoration-none">Purchases</a>
+                <a href="cart.php" class="text-dark text-decoration-none">My Cart</a>
+                <a href="notifications.php" class="text-dark text-decoration-none">Notifications</a>
             </div>
 
-            <div class="col-md-9 p-4">
+            <div class="col-md-10 p-4">
                 <div class="border-bottom mb-3">
                     <h3 class="fw-bold">My Profile</h3>
                     <p>Manage your account!</p>
