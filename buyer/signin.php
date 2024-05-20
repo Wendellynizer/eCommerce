@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
 
     <!-- bootstrap -->
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- custom -->
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -61,8 +61,8 @@
         </div>
     </section>
 
-    <!-- bootstrap -->
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    
 </body>
-
+<!-- bootstrap -->
+<script src="../assets/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>

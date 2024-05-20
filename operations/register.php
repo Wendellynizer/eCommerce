@@ -24,6 +24,8 @@ if(isset($_POST["register"])) {
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
 
+    $stmt->close();
+
     // header("location: ../buyer/signin.php");
 }
 

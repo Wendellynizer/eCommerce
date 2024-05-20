@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once "../config/connection.php";
-$conn = DB::connect();
+require_once "../getConnection.php";
 
 if(isset($_POST["login"])) {
 
@@ -13,7 +12,7 @@ if(isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
     
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+    $stmt = $conn->prepare("CALL GetUserLogin(?,?)");
     $stmt->bind_param("ss", $email, $password);
     
     if($stmt->execute()) {
@@ -25,6 +24,7 @@ if(isset($_POST["login"])) {
         }
 
         $_SESSION["user"] = $result->fetch_assoc();
+        $stmt->close();
     }
 
 
