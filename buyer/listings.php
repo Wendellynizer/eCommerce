@@ -87,7 +87,6 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                 <form action="" class="w-100" style="max-width: 1000px">
                     <div class="input-group ">
                         <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
-
                         <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>
@@ -108,6 +107,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
             <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
                 <a href="dashboard.php" class="text-dark text-decoration-none">Dashboard</a>
                 <a href="" class="text-dark text-decoration-none fw-bold active">My Listings</a>
+                <a href="" class="text-dark text-decoration-none">Orders</a>
                 <a href="sales.php" class="text-dark text-decoration-none">Sales Report</a>
             </div>
 
@@ -115,10 +115,16 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                 <div class="d-flex justify-content-between mb-2">
                     <p class="h4 fw-bold">My Listings</p>
 
-                    <div class="input-group w-25">
-                        <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
-                        <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <div class="d-flex gap-3">
+                        <div class="input-group w-50">
+                            <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
+                            <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+
+                        <a href="productDetails.php" class="btn btn-primary text-center rounded-0 w-0">Add Product</a>
                     </div>
+
+                    
                 </div>
 
                 <p>999 Products</p>
@@ -133,6 +139,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                             <thead class="table-light">
                                 <tr>
                                     <th>Product</th>
+                                    <th>Name</th>
                                     <th>Price</th>
                                     <th>Stock</th>
                                     <th>Condition</th>
@@ -140,12 +147,53 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                                 </tr>
                             </thead>
 
+                            <?php
+                            require_once "../getConnection.php";
+                            $stmt = $conn->prepare("CALL GetAllProducts(5)");
+
+                            if(!$stmt->execute()) {
+                                exit;
+                            }
+                           
+                            $result = $stmt->get_result();
+                            ?>
+
                             <tbody>
+                            <?php
+                            while($prod = $result->fetch_assoc()) {
+                                echo "
                                 <tr>
+                                    
+                                    <td class='align-middle'>
+                                        <img src='../{$prod["image_path"]}' width='80' style='object-fit: contain;'>
+                                    </td>
+                                    <td class='align-middle'>{$prod['product_name']}</td>
+                                    <td class='align-middle'>₱ {$prod['price']}</td>
+                                    <td class='align-middle'>{$prod['quantity']}</td>
+                                    <td class='align-middle'>
+                                        <select name='' class='form-select rounded-0 w-50'>
+                                            <option value=''>Very Good</option>
+                                            <option value=''>Good</option>
+                                            <option value=''>Fair</option>
+                                            <option value=''>Bad</option>
+                                        </select>
+                                    </td>
+                                    <td class='align-middle'>
+                                        <div class='d-flex flex-column gap-3'>
+                                            <a href='productDetails.php?item={$prod["product_id"]}' class='btn btn-warning text-center w-50 rounded-0'>Edit</a>
+                                            <a href='' class='btn btn-primary text-center w-50 rounded-0'>Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                ";
+                            }
+                            ?>
+
+                                <!-- <tr>
                                     <td class="align-middle">
                                         <img src="../uploads/product/sample.jpg" width="56" style="object-fit: contain;">
                                     </td>
-                                    <td class="align-middle">₱999,999</td>
+                                    <td class="align-middle">₱ 999,999</td>
                                     <td class="align-middle">1</td>
                                     <td class="align-middle">
                                         <select name="" class="form-select rounded-0 w-50">
@@ -157,33 +205,11 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                                     </td>
                                     <td class="align-middle">
                                         <div class="d-flex flex-column gap-3">
-                                            <a href="" class="text-center">Edit</a>
-                                            <a href="" class="text-center">Delete</a>
+                                            <a href="" class="btn btn-warning text-center w-50 rounded-0">Edit</a>
+                                            <a href="" class="btn btn-primary text-center w-50 rounded-0">Delete</a>
                                         </div>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="align-middle">
-                                        <img src="../uploads/product/sample3.webp" width="56" style="object-fit: contain;">
-                                    </td>
-                                    <td class="align-middle">₱999,999</td>
-                                    <td class="align-middle">1</td>
-                                    <td class="align-middle">
-                                        <select name="" class="form-select rounded-0 w-50">
-                                            <option value="">Very Good</option>
-                                            <option value="">Good</option>
-                                            <option value="">Fair</option>
-                                            <option value="">Bad</option>
-                                        </select>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="d-flex flex-column gap-3">
-                                            <a href="" >Edit</a>
-                                            <a href="">Delete</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>  
                     </div>

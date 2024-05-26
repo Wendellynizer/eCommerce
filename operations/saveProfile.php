@@ -23,9 +23,6 @@ image
 
 if(isset($_POST["submit"])) {
 
-    //!debug only
-    $errorMsg = "";
-
     $uname = trim($_POST["uname"]);
     $fname = trim($_POST["fname"]);
     $lname = trim($_POST["lname"]);
@@ -46,7 +43,7 @@ if(isset($_POST["submit"])) {
         empty($day) || empty($month) || empty($year) || empty($gender) || empty($password)
     ) {
 
-        header("location: ../buyer/user.php?error=1");
+        header("location: ../buyer/user.php?error=empty");
         exit;
     }
     
