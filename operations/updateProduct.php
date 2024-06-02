@@ -17,6 +17,8 @@ qty
 
 if(isset($_POST["submit"])) {
 
+    $id = $_POST["id"];
+    $current_image_path = $_POST["image_path"];
     $image = $_FILES["image"];
     $productName = trim($_POST["productName"]);
     $description = trim($_POST["description"]);
@@ -25,7 +27,9 @@ if(isset($_POST["submit"])) {
     $price = $_POST["price"];
     $qty = $_POST["qty"];
 
-    // echo $image["name"]."\n";
+
+    $target_file = $current_image_path;
+    // echo $$current_image_path."\n";
     // echo $productName."\n";
     // echo $description."\n";
     // echo $category."\n";
@@ -33,41 +37,38 @@ if(isset($_POST["submit"])) {
     // echo $price."\n";
     // echo $qty."\n";
     // exit;
+    
 
-    if(empty($productName) || empty($description) || empty($category) || empty($condition) || empty($price) || empty($qty) || $image["name"] == ""
-    ) {
+    if(!$image["name"] == '') {
+        //checks if filename already exists, else return error message
+        if(file_exists("../" . $target_file)) {  
+            unlink("../" . $target_file); // deletes previous profile from storage
+        }
 
-        header("location: ../buyer/productDetails.php?error=incomplete");
-        exit;
+        $image_to_upload = $image["tmp_name"];
+
+        $ext = pathinfo($image["name"], PATHINFO_EXTENSION);
+        $new_file_name = "user".$_SESSION["user"]["user_id"] .uniqid().".". $ext; //* new filename
+         // image saving logic
+        $image_dir = "uploads/product/"; 
+        $target_file = $image_dir . basename($new_file_name);
+        move_uploaded_file($image_to_upload, "../".$target_file);
     }
-
-    // image saving logic
-    $ext = pathinfo($image["name"], PATHINFO_EXTENSION);
-    $new_file_name = "user".$_SESSION["user"]["user_id"] . uniqid(). ".". $ext; //* new filename
-    $image_dir = "uploads/product/";
-    $target_file = "../". $image_dir . basename($new_file_name);
-
-    //checks if filename already exists, else return error message
-    if(file_exists($target_file)) {
-        //error message for reupload
-        header("location: ../buyer/productDetails.php?error=existing");
-        exit;
-    }
-
     
     
-    $stmt = $conn->prepare("CALL AddProduct(?,?,?,?,?,?)");
-    $stmt->bind_param("isidis", $_SESSION["user"]["user_id"], $productName, $category, $price, $qty, $target_file);
+    
+    
+    $stmt = $conn->prepare("CALL UpdateProduct(?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("issidiss", $id, $productName, $description, $category, $price, $qty, $target_file, $condition);
     $stmt->execute();
 
-    move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-
+    
     $stmt->close();
 
-    header("location: ../buyer/lisitings.php");    
+    header("location: ../buyer/listings.php");    
 } else {
 
-    header("location: ../buyer/listings.php"); 
+    header("location: ../buyer/listngs.php"); 
 }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "../sessionCheck.php";
 
 $months = [
     "January", "February", "March", "April",
@@ -18,6 +18,8 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
 } else {
     echo "Date format is incorrect.";
 }
+
+$notif = $conn->query("SELECT COUNT(*) AS unread_notif FROM notifications WHERE is_read = 1")->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -43,11 +45,12 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                 <div class="d-none d-md-block">
                     <div class="d-flex align-items-center">
                         <a href="../index.php" class="text-dark text-decoration-none">HOME</a>
-                        <a href="" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
+                        <a href="products.php" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
                         <a href="listings.php" class="ms-5 text-dark text-decoration-none">MY LISTINGS</a>
 
                         <div class="notification ms-5 d-flex align-items-center position-relative">
-                            <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
+                            <a href="notifications
+                            .php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
                             <span class="text-dark" style="user-select: none;">99</span>
                         </div>
@@ -74,7 +77,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
                     <div class="notification ms-5 d-flex align-items-center position-relative">
                         <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                        <span class="text-dark" style="user-select: none;">99</span>
+                        <span class="text-dark" style="user-select: none;"><?php echo $notif["unread_notif"] ?></span>
                     </div>
 
                     <i class="fa-solid fa-bars h2"></i>
@@ -114,7 +117,7 @@ if (preg_match('/(\d{4})-(\d{2})-(\d{2})/', $dateString, $matches)) {
 
             <div class="col-md-10 p-4">
                 <div class="border-bottom mb-3">
-                    <h3 class="fw-bold">My Profile</h3>
+                    <h3 class="fw-bold">My Profile <i class="fa-solid fa-user"></i></h3>
                     <p>Manage your account!</p>
                 </div>
 

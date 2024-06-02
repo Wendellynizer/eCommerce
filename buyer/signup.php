@@ -2,22 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Register</title>
 
-    <!-- font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
-
-    <!-- bootstrap -->
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- custom -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <?php include_once "../includes/header.php" ?>
 </head>
 
 <body>

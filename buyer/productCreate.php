@@ -2,20 +2,7 @@
 session_start();
 require_once "../getConnection.php";
 
-
-if(isset($_GET["item"])) {
-    $stmt = $conn->prepare("CALL GetProduct(?)");
-    $stmt->bind_param("i", $_GET["item"]);
-    
-    if(!$stmt->execute()) {
-        exit;
-    }
-
-    $product = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
-}
-
-$category = $conn->query("SELECT * FROM category ORDER BY category_name;");
+$category = $conn->query("SELECT * FROM category;");
 ?>
 
 <!DOCTYPE html>
@@ -41,13 +28,13 @@ $category = $conn->query("SELECT * FROM category ORDER BY category_name;");
                 <div class="d-none d-md-block">
                     <div class="d-flex align-items-center">
                         <a href="../index.php" class="text-dark text-decoration-none">HOME</a>
-                        <a href="" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
+                        <a href="products.php" class="ms-5 text-dark text-decoration-none">PRODUCTS</a>
                         <a href="listings.php" class="ms-5 text-dark text-decoration-none fw-bold active">MY LISTINGS</a>
 
                         <div class="notification ms-5 d-flex align-items-center position-relative">
                             <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                            <span class="text-dark" style="user-select: none;">99</span>
+                            <span class="text-dark notif-count" style="user-select: none;">99</span>
                         </div>
                         
                         <!-- profile -->
@@ -59,7 +46,7 @@ $category = $conn->query("SELECT * FROM category ORDER BY category_name;");
 
                             <ul class="dropdown-menu dropdown-menu-end rounded-1 py-0 profile-dropdown">
                                 <li><a class="dropdown-item py-2" href="user.php">My Account</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Purchases</a></li>
+                                <li><a class="dropdown-item py-2" href="products.php">Purchases</a></li>
                                 <li><a class="dropdown-item py-2" href="../operations/logout.php">Logout</a></li>
                             </ul>
                         </div>
@@ -72,33 +59,16 @@ $category = $conn->query("SELECT * FROM category ORDER BY category_name;");
                     <div class="notification ms-5 d-flex align-items-center position-relative">
                         <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                        <span class="text-dark" style="user-select: none;">99</span>
+                        <span class="text-dark notif-count" style="user-select: none;">99</span>
                     </div>
 
                     <i class="fa-solid fa-bars h2"></i>
                 </div>
             </div>
         </nav>
-
-        <!-- <div class="container-fluid bg-primary py-3 search-nav">
-            <div class="container-xxl d-flex justify-content-center align-items-center gap-5">
-                <form action="" class="w-100" style="max-width: 1000px">
-                    <div class="input-group ">
-                        <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
-                        <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-
-                <a href="" class="cart-container text-decoration-none d-flex align-items-center gap-2">
-                    <span class="text-light"><i class="fa-solid fa-cart-shopping h4"></i></span>
-
-                    <span class="text-light" style="user-select: none;">99</span>
-                </a>
-            </div>
-        </div> -->
     </header>
 
-    <section class="padding-from-nav container-xxl">
+    <section class="padding-from-nav-sm container-xxl">
 
         <!-- contents -->
         <div class="row">
@@ -110,22 +80,20 @@ $category = $conn->query("SELECT * FROM category ORDER BY category_name;");
                 <p class="h4 fw-bold">Product Information</p>
                 <hr>
                 
-                <?php echo "../".$product["image_path"] ?>
-                
                 <form action="../operations/addProduct.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="">Product Image</label>
-                        <input type="file" name="image" id="" class="form-control" value="<?php echo (isset($product))? "../" . $product["image_path"] : ""?>">
+                        <input type="file" name="image" class="form-control" accept="image/*">
                     </div>
 
                     <div class="mb-3">
                         <label for="">Product Name</label>
-                        <input type="text" name="productName" id="" class="form-control" value="<?php echo (isset($product))? $product["product_name"] : ""?>">
+                        <input type="text" name="productName" id="" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label for="">Description</label>
-                        <textarea name="description" class="form-control" placeholder="Product description..."><?php echo (isset($product))? $product["description"] : ""?></textarea>
+                        <textarea name="description" class="form-control" placeholder="Product description..."></textarea>
                     </div>
                     
                     <div class="mb-3">
@@ -151,16 +119,16 @@ $category = $conn->query("SELECT * FROM category ORDER BY category_name;");
 
                     <div class="mb-3">
                         <label for="">Price</label>
-                        <input type="number" name="price" id="" class="form-control" value="<?php echo (isset($product))? $product["price"] : ""?>">
+                        <input type="number" name="price" id="" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label for="">Quantity</label>
-                        <input type="number" name="qty" id="" class="form-control" value="<?php echo (isset($product))? $product["quantity"] : ""?>">
+                        <input type="number" name="qty" id="" class="form-control">
                     </div>
 
                     <div class="position-sticky bottom-0 py-2 d-flex justify-content-end align-items-center gap-2" style="background-color: white;">
-                        <a href="" class="btn btn-outline-success rounded-0">Cancel</a>
+                        <a href="listings.php" class="btn btn-outline-success rounded-0">Cancel</a>
                         <button type="submit" class="btn btn-primary rounded-0" name="submit">Save</button>
                     </div>
                 </form>

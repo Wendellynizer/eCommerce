@@ -45,22 +45,14 @@ if(isset($_POST["submit"])) {
     $ext = pathinfo($image["name"], PATHINFO_EXTENSION);
     $new_file_name = "user".$_SESSION["user"]["user_id"] . uniqid(). ".". $ext; //* new filename
     $image_dir = "uploads/product/";
-    $target_file = "../". $image_dir . basename($new_file_name);
-
-    //checks if filename already exists, else return error message
-    if(file_exists($target_file)) {
-        //error message for reupload
-        header("location: ../buyer/productDetails.php?error=existing");
-        exit;
-    }
+    $target_file = $image_dir . basename($new_file_name);
 
     
-    
-    $stmt = $conn->prepare("CALL AddProduct(?,?,?,?,?,?)");
-    $stmt->bind_param("isidis", $_SESSION["user"]["user_id"], $productName, $category, $price, $qty, $target_file);
+    $stmt = $conn->prepare("CALL AddProduct(?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("isidisss", $_SESSION["user"]["user_id"], $productName, $category, $price, $qty, $target_file, $description, $condition);
     $stmt->execute();
 
-    move_uploaded_file($_FILES["image"]["tmp_name"], $image_dir);
+    move_uploaded_file($_FILES["image"]["tmp_name"], "../".$target_file);
 
     $stmt->close();
 

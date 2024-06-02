@@ -87,18 +87,6 @@ if(isset($_POST["submit"])) {
     $stmt->close();
 
     header("location: ../buyer/user.php");
-
-
-    //* checks if image is fake or not
-    // $check = getimagesize($_FILES["image"]["tmp_name"]);
-
-    // echo $check["mime"];
-
-    // if(!$check) {
-    //     echo "File is not an image ";
-    //     exit;
-    // }
-
     
 } else {
 

@@ -14,6 +14,16 @@ body {
     background-color: rgb(243, 243, 243) !important;
 }
 
+header {
+    box-shadow: 0 3px 10px rgba(0,0,0,.1) !important;
+}
+
+
+
+table tbody td, th {
+    font-size: 0.9rem;
+}
+
 .bg-primary {
     background-color: var(--primary) !important;
 }
@@ -32,7 +42,7 @@ body {
 
 .btn-primary {
     background-color: var(--primary) !important;
-    border: 0;
+    border: 0 !important;
 }
 
 .btn-primary:hover {
@@ -84,6 +94,10 @@ body {
     padding-top: 12rem;
 }
 
+.padding-from-nav-sm {
+    padding-top: 6rem;
+}
+
 .product {
     height: 400px;
     max-height: 500px;
@@ -95,10 +109,18 @@ body {
     outline: 3px solid var(--primary) !important;
 }
 
+.product-name {
+    font-size: 1rem; 
+    height: 30px;
+    white-space: nowrap; 
+    overflow: hidden !important; 
+    text-overflow: ellipsis;
+}
+
 .product .product-img {
     max-width: 100%;
     /* height: 300px; */
-    max-height: 250px; 
+    height: 250px; 
     object-fit: cover;
     border-radius: 0;
 
@@ -126,4 +148,60 @@ body {
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
+}
+
+
+.bg-pending {
+    background-color: #faf89c;
+    color: #e69214;
+    width: 100%;
+}
+
+.bg-shipping {
+    background-color: #e1d1ec;
+    color: #33238a;
+    width: 100%;
+}
+
+.bg-delivering {
+    background-color: #cce9bc;
+    color: #00471d;
+    width: 100%;
+}
+
+.bg-complete {
+    background-color: #1e8b4a;
+    color: white;
+    width: 100%;
+}
+
+.bg-cancelled {
+    background-color: #ffb2b2;
+    color: #C40C0C;
+    width: 100%;
+}
+
+.badge-custom {
+    padding-inline: 8px;
+    border-radius: 3px;
+}
+
+.badge-green {
+    background-color: #1e8b4a;
+    color: white !important;   
+}
+
+.badge-semigreen {
+    background-color: #acddc0;
+    color: #00471d !important;   
+}
+
+.badge-yellow {
+    background-color: #faf89c;
+    color: #b16f0c !important;
+}
+
+.badge-red {
+    background-color: #C40C0C;
+    color: white !important;
 }
