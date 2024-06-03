@@ -117,7 +117,7 @@ $contact = $_SESSION["user"]["contact_no"];
                             <p>x<?php echo $qty ?></p>
                         </div>
 
-                        <div class="align-self-end text-end flex-grow-1">
+                        <div class="align-self-end text-end flex-grow-1 w-100">
                             <p class="h3 fw-bold text-primary">Total: ₱ <?php echo $qty * $row["price"] ?></p>
                         </div>
                     </div>
@@ -126,7 +126,7 @@ $contact = $_SESSION["user"]["contact_no"];
                         <form action="../operations/processOrder.php" method="post">
                             <input type="hidden" name="productId" value="<?php echo $productId ?>" />
                             <input type="hidden" name="qty" value="<?php echo $qty ?>" />
-                            <button type="submit" class="btn btn-primary rounded-0" name="submit">Place Order</a>
+                            <button type="submit" class="btn btn-primary rounded-0" name="submit">Place Order</button>
                         </form>
                     </div>
                 </div>
@@ -137,8 +137,4 @@ $contact = $_SESSION["user"]["contact_no"];
 
     
 </body>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-    <script src="../assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/user.js"></script>
 </html>

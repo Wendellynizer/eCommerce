@@ -3,7 +3,33 @@ require_once "../sessionCheck.php";
 
 
 //! test
-$result = $conn->query("SELECT * FROM order_details WHERE seller_id=" . $_SESSION["user"]["user_id"] . " LIMIT 100");
+// $result = $conn->query("SELECT * FROM order_details WHERE seller_id=" . $_SESSION["user"]["user_id"] . " LIMIT 100");
+
+if(isset($_GET["page_no"]) && $_GET["page_no"] !== "") {
+    $page_no = $_GET["page_no"];
+} else {
+    $page_no = 1;
+}
+
+$record_limit = 10;
+$offset = ($page_no - 1) * $record_limit;
+
+$previous_page = $page_no - 1;
+$next_page = $page_no + 1;
+
+// get record count 
+$record_count = $conn->query("SELECT COUNT(*) as total_records FROM order_details WHERE seller_id = {$_SESSION['user']['user_id']}");
+$record = $record_count->fetch_assoc();
+
+$total_pages = ceil($record["total_records"] / $record_limit);
+
+// query
+$stmt = $conn->prepare("SELECT order_id, product_name, firstname, lastname, quantity, order_date_time, status, total_amount FROM order_details WHERE seller_id = ? LIMIT ?, ?");
+$stmt->bind_param("iii", $_SESSION['user']['user_id'], $offset, $record_limit);
+$stmt->execute();
+
+$sql = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +103,6 @@ $result = $conn->query("SELECT * FROM order_details WHERE seller_id=" . $_SESSIO
                 <a href="dashboard.php" class="text-dark text-decoration-none">Dashboard <i class="fa-solid fa-gauge ms-3"></i></a>
                 <a href="listings.php" class="text-dark text-decoration-none">My Listings <i class="fa-solid fa-box ms-3"></i></a>
                 <a href="orders.php" class="text-dark text-decoration-none fw-bold active">Orders <i class="fa-solid fa-box ms-3"></i> </a>
-                <a href="sales.php" class="text-dark text-decoration-none">Sales Report <i class="fa-solid fa-file-invoice-dollar ms-3"></i> </a>
                 <a href="trash.php" class="text-dark text-decoration-none">Trash <i class="fa-solid fa-trash ms-3"></i></a>
             </div>
 
@@ -99,8 +124,24 @@ $result = $conn->query("SELECT * FROM order_details WHERE seller_id=" . $_SESSIO
                 </div>
 
                 <div class="row p-2">
+                    <div class="d-flex justify-content-end gap-4 mb-1">
+                        <p>Page <strong><?php echo $page_no ?> of <?php echo ($total_pages != 0)? $total_pages :0 ?></strong></p>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-primary rounded-0 <?php echo ($page_no <= 1) ? 'disabled' : ''?> " 
+                            
+                            <?php echo ($page_no > 1) ? 'href=?page_no='.$previous_page : ''?> 
+                            >
+                            <i class="fa-solid fa-chevron-left"></i></a>
+
+                            <a class="btn btn-primary rounded-0 <?php echo ($page_no >= $total_pages) ? 'disabled' : ''?> "
+                            <?php echo ($page_no < $total_pages) ? 'href=?page_no='.$next_page : ''?> 
+                            ><i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+
                     <!-- ALL ORDERS -->
-                    <table class="table table-striped border" id="allTable">
+                    <table class="table table-striped border">
                         <thead class="table-light">
                             <tr>
                                 <th>Order ID</th>
@@ -117,52 +158,53 @@ $result = $conn->query("SELECT * FROM order_details WHERE seller_id=" . $_SESSIO
 
                         <tbody class="order-body">
                             <?php
-                            if ($result->num_rows > 0) {
-                                while ($prod = $result->fetch_assoc()) {
-                                    $badgeColor = "rounded-5 ";
-                                    $buttonText = "Ship Order";
+                            if ($sql->num_rows <= 0) {
+                                echo "<tr><td class='align-middle text-center p-5' colspan='9'>No orders found</td></tr>";
+                                exit;
+                            }
 
-                                    switch ($prod['status']) {
-                                        case "Pending":
-                                            $badgeColor .= "bg-pending";
-                                            break;
-                                        case "Shipping":
-                                            $badgeColor .= "bg-shipping";
-                                            $buttonText = "Deliver";
-                                            break;
-                                        case "Delivering":
-                                            $badgeColor .= "bg-delivering";
-                                            $buttonText = "Complete";
-                                            break;
-                                        case "Complete":
-                                            $badgeColor .= "bg-complete";
-                                            $buttonText = "Complete";
-                                            break;
-                                        case "Cancelled":
-                                            $badgeColor .= "bg-cancelled";
-                                            $buttonText = "Return";
-                                            break;
-                                    }
+                            while ($prod = $sql->fetch_assoc()) {
+                                $badgeColor = "rounded-5 ";
+                                $buttonText = "Ship Order";
 
-
-                                    echo "
-                                    <tr>
-                                        <td class='align-middle text-center fw-bold'>{$prod['order_id']}</td>
-                                        <td class='align-middle'>{$prod['firstname']}</td>
-                                        <td class='align-middle'>{$prod['lastname']}</td>
-                                        <td class='align-middle'>{$prod['product_name']}</td>
-                                        <td class='align-middle text-center'>{$prod['quantity']}</td>
-                                        <td class='align-middle'>{$prod['order_date_time']}</td>
-                                        <td class='align-middle'><span class='badge " . $badgeColor . "'>{$prod['status']}</span></td>
-                                        <td class='align-middle'>₱ {$prod['total_amount']}</td>
-                                        <td class='align-middle gap-2'>
-                                            <button class='btn btn-sm btn-warning rounded-0 w-100' onclick='changeStatus({$prod['order_id']}, this)' " . (($prod["status"] == 'Complete') ? 'disabled' : '') . ">" . $buttonText . "</button>
-                                        </td>
-                                    </tr>
-                                    ";
+                                switch ($prod['status']) {
+                                    case "Pending":
+                                        $badgeColor .= "bg-pending";
+                                        break;
+                                    case "Shipping":
+                                        $badgeColor .= "bg-shipping";
+                                        $buttonText = "Deliver";
+                                        break;
+                                    case "Delivering":
+                                        $badgeColor .= "bg-delivering";
+                                        $buttonText = "Complete";
+                                        break;
+                                    case "Complete":
+                                        $badgeColor .= "bg-complete";
+                                        $buttonText = "Complete";
+                                        break;
+                                    case "Cancelled":
+                                        $badgeColor .= "bg-cancelled";
+                                        $buttonText = "Return";
+                                        break;
                                 }
-                            } else {
-                                echo "<tr><td class='align-middle text-center py-5' colspan='7'>No orders found</td></tr>";
+
+
+                                echo "
+                                <tr>
+                                    <td class='align-middle text-center fw-bold'>{$prod['order_id']}</td>
+                                    <td class='align-middle'>{$prod['firstname']}</td>
+                                    <td class='align-middle'>{$prod['lastname']}</td>
+                                    <td class='align-middle'>{$prod['product_name']}</td>
+                                    <td class='align-middle text-center'>{$prod['quantity']}</td>
+                                    <td class='align-middle'>{$prod['order_date_time']}</td>
+                                    <td class='align-middle'><span class='badge " . $badgeColor . "'>{$prod['status']}</span></td>
+                                    <td class='align-middle'>₱ {$prod['total_amount']}</td>
+                                    <td class='align-middle gap-2'>
+                                        <button class='btn btn-sm btn-warning rounded-0 w-100' onclick='changeStatus({$prod['order_id']}, this)' " . (($prod["status"] == 'Complete') ? 'disabled' : '') . ">" . $buttonText . "</button>
+                                    </td>
+                                </tr>
+                                ";
                             }
                             ?>
                         </tbody>

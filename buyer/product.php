@@ -2,7 +2,9 @@
 require_once "../sessionCheck.php";
 
 if(isset($_GET["id"])) {
-    $stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
+    $stmt = $conn->prepare("SELECT *, u.username AS 'seller' FROM products p 
+    INNER JOIN users u ON p.product_of = u.user_id
+    WHERE  product_id = ?");
     $stmt->bind_param("i", $_GET["id"]);
     $stmt->execute();
 
@@ -79,7 +81,7 @@ if(isset($_GET["id"])) {
         <?php include_once "../includes/searchBar.php" ?>
     </header>
 
-    <section class="padding-from-nav container-xxl pb-5">
+    <section class="padding-from-nav container-xxl pb-3">
 
         <!-- contents -->
         <div class="px-5">
@@ -118,10 +120,24 @@ if(isset($_GET["id"])) {
             </div>
         </div>
         
+
+      
+    </section>
+
+    <section class="px-5 container-xxl pb-5">
+        <div class="row p-4 bg-light shadow-sm gap-5">
+            <div class="p-4">
+                <p class="h5 fw-bold mb-5">Product Description</p>
+                
+                <p class="mb-5"><?php echo $result["description"]?></p>
+
+                <div>
+                    <p><span class="fw-bold">Seller: </span><?php echo $result["seller"] ?></p>
+                </div>
+            </div>
+        </div>
     </section>
 
     
 </body>
-    <!-- <script src="../assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="../assets/js/main.js"></script> -->
 </html>

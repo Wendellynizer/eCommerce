@@ -90,7 +90,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                 <div>
 
                     <?php
-                    $stmt = $conn->prepare("SELECT notif_type, message, is_read, notif_date FROM notifications WHERE user_id = ?  ORDER BY notif_date DESC");
+                    $stmt = $conn->prepare("SELECT user_id, notif_type, message, is_read, notif_date FROM notifications WHERE user_id = ?  ORDER BY notif_date DESC");
                     $stmt->bind_param("i", $_SESSION["user"]["user_id"]);
 
                     if ($stmt->execute()) {
@@ -108,11 +108,13 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                             switch ($row["notif_type"]) {
                                 case "Order Processing":
                                     $icon = "fa-gears";
+                                    // $link = ($row["user_id"] == $_SESSION["user"]["user_id"]) ? "<a href='purchases.php'>See Orders.</a>" : "<a href='orders.php'>See Purchases.</a>";
                                     break;
                                 case "Order Shipped":
                                     $icon = "fa-cart-flatbed";
+                                   
                                     break;
-                                case "Order Delivery":
+                                case "Order Delivering":
                                     $icon = "fa-truck";
                                     break;
                                 case "Order Complete":

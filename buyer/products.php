@@ -4,7 +4,7 @@ require_once "../sessionCheck.php";
 $catResult = $conn->query("SELECT * FROM category ORDER BY category_name");
 
 // initializing
-$search = (isset($_GET["search"]))? urlencode($_GET["search"]) : '';
+$search = (isset($_GET["search"]))? urldecode($_GET["search"]) : '';
 
 $catSearch = (isset($_GET["category"]))? urlencode($_GET["category"]) : '%';
 $min = (isset($_GET["min"]))? $_GET["min"] : 0;
@@ -121,7 +121,7 @@ $result = $conn->query(
 
             <div class="col-10">
                 <div class="row">
-                    <h5 class="mb-5">Search results for '<span class="text-primary"> </span>'</h5>
+                    <h5 class="mb-5">Search results for '<span class="text-primary"><?php echo (isset($_GET["search"]))? $_GET["search"] : 'all' ?></span>'</h5>
 
                     <div class="filter-container d-flex align-items-center gap-2">
                         <!-- all filters here -->

@@ -4,13 +4,9 @@ loadPHP(".notif-count", "../operations/getUnreadNotif.php");
 loadPHP(".cart-count", "../operations/getCartCount.php");
 loadPHP(".cart-body", "../operations/getCarts.php");
 loadPHP(".purchase-body", "../operations/getPurchases.php");
-loadPHP(".listing-body", "../operations/fetchListings.php");
-loadPHP(".trash-body", "../operations/fetchTrash.php");
+// loadPHP(".listing-body", "../operations/fetchListings.php");
+// loadPHP(".trash-body", "../operations/fetchTrash.php");
 
-
-$(document).ready(function() {
-    new DataTable(".table");
-});
 
 
 
@@ -162,8 +158,12 @@ function add(btn) {
     let qtyField = $(row).find(".qty-field");
     let qty = parseInt(qtyField.val());
 
+    let priceVal = $(row).find(".price").html();
+
     qty += 1;
     qtyField.val(qty);
+
+    $(".total").html(priceVal * qty);
 }
 
 function subtract(btn) {
@@ -258,7 +258,32 @@ function trashItem(productID, productName) {
                 data: {product_id: productID},
                 success: function(result) {
 
-                    loadPHP(".listing-body", "../operations/fetchListings.php");
+                    // loadPHP(".listing-body", "../operations/fetchListings.php");
+                    window.location.reload();
+                }
+            });
+        }
+    });
+}
+
+function deleteItem(productID, productName) {
+    Swal.fire({
+        icon: "warning",
+        title: `Do you want to delete <b>${productName}</b>?`,
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonText: "Yes"
+    })
+    .then((result) => {
+
+        if(result.isConfirmed) {
+            $.ajax({
+                url: "../operations/deleteTrash.php",
+                type: "POST",
+                data: {product_id: productID},
+                success: function(result) {
+
+                    window.location.reload();
                 }
             });
         }

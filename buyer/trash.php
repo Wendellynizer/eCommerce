@@ -1,6 +1,31 @@
 <?php
 session_start();
 require_once "../getConnection.php";
+
+if(isset($_GET["page_no"]) && $_GET["page_no"] !== "") {
+    $page_no = $_GET["page_no"];
+} else {
+    $page_no = 1;
+}
+
+$record_limit = 10;
+$offset = ($page_no - 1) * $record_limit;
+
+$previous_page = $page_no - 1;
+$next_page = $page_no + 1;
+
+// get record count 
+$record_count = $conn->query("SELECT COUNT(*) as total_records FROM products WHERE product_of = {$_SESSION['user']['user_id']} AND deleted_at IS NOT NULL");
+$record = $record_count->fetch_assoc();
+
+$total_pages = ceil($record["total_records"] / $record_limit);
+
+// query
+$stmt = $conn->prepare("SELECT product_id, product_name, product_condition, price, quantity, image_path FROM products WHERE deleted_at IS NOT NULL AND product_of = ? LIMIT ?, ?");
+$stmt->bind_param("iii", $_SESSION['user']['user_id'], $offset, $record_limit);
+$stmt->execute();
+
+$sql = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +57,7 @@ require_once "../getConnection.php";
                         <div class="notification ms-5 d-flex align-items-center position-relative">
                             <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                            <span class="text-dark" style="user-select: none;">99</span>
+                            <span class="text-dark notif-count" style="user-select: none;">99</span>
                         </div>
 
                         <!-- profile -->
@@ -57,7 +82,7 @@ require_once "../getConnection.php";
                     <div class="notification ms-5 d-flex align-items-center position-relative">
                         <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                        <span class="text-dark" style="user-select: none;">99</span>
+                        <span class="text-dark notif-count" style="user-select: none;">99</span>
                     </div>
 
                     <i class="fa-solid fa-bars h2"></i>
@@ -74,7 +99,6 @@ require_once "../getConnection.php";
                 <a href="dashboard.php" class="text-dark text-decoration-none">Dashboard <i class="fa-solid fa-gauge ms-3"></i></a>
                 <a href="listings.php" class="text-dark text-decoration-none">My Listings <i class="fa-solid fa-box ms-3"></i></a>
                 <a href="orders.php" class="text-dark text-decoration-none">Orders <i class="fa-solid fa-box ms-3"></i> </a>
-                <a href="sales.php" class="text-dark text-decoration-none">Sales Report <i class="fa-solid fa-file-invoice-dollar ms-3"></i> </a>
                 <a href="trash.php" class="text-dark text-decoration-none fw-bold active">Trash <i class="fa-solid fa-trash ms-3"></i></a>
             </div>
 
@@ -85,6 +109,23 @@ require_once "../getConnection.php";
 
                 <div class="row p-2">
                     <div class="col-12 p-0">
+                        <div class="d-flex justify-content-end gap-4 mb-1">
+                            <p>Page <strong><?php echo $page_no ?> of <?php echo ($total_pages != 0)? $total_pages : 1 ?></strong></p>
+
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-primary rounded-0 <?php echo ($page_no <= 1) ? 'disabled' : ''?> " 
+                                
+                                <?php echo ($page_no > 1) ? 'href=?page_no='.$previous_page : ''?> 
+                                >
+                                <i class="fa-solid fa-chevron-left"></i></a>
+
+                                <a class="btn btn-primary rounded-0 <?php echo ($page_no >= $total_pages) ? 'disabled' : ''?> "
+                                <?php echo ($page_no < $total_pages) ? 'href=?page_no='.$next_page : ''?> 
+                                ><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+
+
                         <table class="table table-striped border" id="#listing-table">
                             <thead class="table-light">
                                 <tr>
@@ -99,7 +140,59 @@ require_once "../getConnection.php";
 
 
                             <tbody class="trash-body">
-                                
+                                <?php
+                                if($sql->num_rows <= 0) {
+                                    echo "<td colspan='6'>
+                                        <div class='text-center p-5'>
+                                        No results found.
+                                        </div>
+                                    </td>";
+                                    exit;
+                                }
+
+                                while($row = $sql->fetch_assoc()) {
+
+                                $badgeColor = "";
+
+                                switch ($row["product_condition"]) {
+                                    case "Very Good":
+                                        $badgeColor = "badge-green";
+                                        break;
+                                    case "Good":
+                                        $badgeColor = "badge-semigreen";
+                                        break;
+                                    case "Fair":
+                                        $badgeColor = "badge-yellow";
+                                        break;
+                                    case "Bad":
+                                        $badgeColor = "badge-red";
+                                        break;
+                                }
+                            
+
+                                echo "
+                                    <tr>
+                                        <td class='border' style='width: 100px'><img src='../". $row['image_path']."' width='100' height='100' style='object-fit: contain;'></td>
+                                        <td class='align-middle' style='max-width: 200px;'>{$row["product_name"]}</td>
+                                        <td class='align-middle'>{$row["price"]}</td>
+                                        <td class='align-middle'>{$row["quantity"]}</td>
+                                        <td class='align-middle'>
+                                            <span class='badge badge-green w-75 p-2'>{$row["product_condition"]}</span>
+                                        </td>
+                                        <td class='align-middle'>
+                                            <div class='d-flex justify-content-start gap-2'>
+                                                <button type='button' class='btn btn-success text-center  rounded-1' onclick='restoreTrash({$row["product_id"]}, `{$row["product_name"]}`)'>
+                                                    <i class='fa-solid fa-trash-arrow-up'></i></i>
+                                                </button>
+
+                                                <button type='button' class='btn btn-primary text-center rounded-1' onclick='deleteItem({$row["product_id"]}, `{$row["product_name"]}`)'>
+                                                    <i class='fa-solid fa-trash'></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>";
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>

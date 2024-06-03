@@ -1,5 +1,4 @@
 <?php
-
 require_once "../sessionCheck.php";
 
 if(isset($_POST["submit"])) {
@@ -13,6 +12,16 @@ if(isset($_POST["submit"])) {
 
     if($stmt->execute()) {
        
+        $msg = $_SESSION['user']['username']." has placed an order";
+        $notif_type = "Customer Order";
+
+        $stmt2 = $conn->prepare("
+            INSERT INTO notifications (user_id, notif_type, message) 
+            SELECT u.user_id, ?, ? FROM users u INNER JOIN products p 
+            WHERE ");
+
+        $stmt2->bind_param("iss",  $_SESSION['user']['user_id'], $notif_type, $msg);
+        $stmt2->execute();
 
         // get user, seller, and product data
         // $result = $conn->query("SELECT username, seller_id, product_name, quantity, total_amount FROM order_details WHERE username='{$_SESSION["user"]["username"]}' AND order_date_time = '{$currentDateTime}'");

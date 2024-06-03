@@ -1,8 +1,6 @@
 <?php
 require_once "../sessionCheck.php";
 
-// make all unread
-$conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["user"]["user_id"]}");
 ?>
 
 <!DOCTYPE html>

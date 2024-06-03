@@ -24,7 +24,7 @@ while($row = $result->fetch_assoc()) {
                 <p class='product-name'>{$row["product_name"]}</p>
             </div>
         </td>
-        <td class='align-middle'>₱ {$row["price"]}</td>
+        <td class='align-middle'>₱ <span class='price'>{$row["price"]}</span></td>
         <td class='align-middle'>
             <div class='btn-group d-flex justify-content-center' role='group'>
                 <button type='button' class='btn btn-outline-secondary rounded-0 subtract' style='max-width: 40px;' onclick='subtract(this)'>-</button>
@@ -33,7 +33,7 @@ while($row = $result->fetch_assoc()) {
             </div>
             
         </td>
-        <td class='align-middle total-amount'>₱ 999999</td>
+        <td class='align-middle total-amount'>₱ <span class='total'>999999</span></td>
         <td class='align-middle'>
             <div>
                 <a href='checkout.php?id={$row["product_id"]}&qty={$row["qty"]}' class='btn btn-sm btn-primary rounded-0')>Checkout</a>

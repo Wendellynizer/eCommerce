@@ -187,7 +187,7 @@ table tbody td, th {
 }
 
 .badge-green {
-    background-color: #1e8b4a;
+    background-color: #1e8b4a !important;
     color: white !important;   
 }
 
