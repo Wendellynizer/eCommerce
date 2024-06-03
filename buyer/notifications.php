@@ -2,7 +2,7 @@
 require_once "../sessionCheck.php";
 
 // make all unread
-$conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["user"]["user_id"]} ORDER BY `timestamp` ASC");
+$conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["user"]["user_id"]}");
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                 <div>
 
                     <?php
-                    $stmt = $conn->prepare("SELECT notif_type, message, is_read, timestamp FROM notifications WHERE user_id = ?");
+                    $stmt = $conn->prepare("SELECT notif_type, message, is_read, notif_date FROM notifications WHERE user_id = ?  ORDER BY notif_date DESC");
                     $stmt->bind_param("i", $_SESSION["user"]["user_id"]);
 
                     if ($stmt->execute()) {
@@ -103,6 +103,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
 
                         while ($row = $result->fetch_assoc()) {
                             $icon = "";
+                            $link = "";
 
                             switch ($row["notif_type"]) {
                                 case "Order Processing":
@@ -116,20 +117,22 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                                     break;
                                 case "Order Complete":
                                     $icon = "fa-check";
+                                    $link = " <a href='purchases.php'>See purchases.</a>";
                                     break;
                                 case "Customer Order":
                                     $icon = "fa-cart-arrow-down";
+                                    $link = " <a href='orders.php'>See orders now.</a>";
                                     break;
                             }
 
-                            $formattedDate = date('F d, Y', strtotime($row["timestamp"]));
+                            $formattedDate = date('F d, Y h:i a', strtotime($row["notif_date"]));
                             echo "
                             <div class='border border-bottom d-flex align-items-center gap-5 pt-3 ps-4 pe-3 mb-2'>
                                 <i class='fa-solid " . $icon . " h1'></i>
         
                                 <div class='w-100'>
                                     <p class='fw-bold'>{$row["notif_type"]}</p>
-                                    <p>{$row["message"]}</p>
+                                    <p>{$row["message"]} {$link}</p>
                                     <p style='font-size: 0.7rem' class='text-end'>{$formattedDate}</p>
                                 </div>
                             </div>";

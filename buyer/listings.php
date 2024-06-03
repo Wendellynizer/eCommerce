@@ -82,11 +82,6 @@ require_once "../getConnection.php";
                 <div class="d-flex justify-content-between mb-2">
                     <p class="h4 fw-bold">My Listings</p>
 
-                    <div class="d-flex gap-3">
-                        <a href="productCreate.php" class="btn btn-primary text-center rounded-0 w-0">Add Product</a>
-                    </div>
-
-
                 </div>
 
                 <div class="row p-2">
@@ -104,7 +99,7 @@ require_once "../getConnection.php";
                             </thead>
 
 
-                            <tbody class="listing-body">
+                            <tbody class="listing-body" id="list-body">
                                 
                             </tbody>
                         </table>

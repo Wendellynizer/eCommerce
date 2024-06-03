@@ -1,6 +1,3 @@
-$(document).ready(function() {
-    new DataTable(".table");
-});
 
 // load all data
 loadPHP(".notif-count", "../operations/getUnreadNotif.php");
@@ -11,7 +8,9 @@ loadPHP(".listing-body", "../operations/fetchListings.php");
 loadPHP(".trash-body", "../operations/fetchTrash.php");
 
 
-
+$(document).ready(function() {
+    new DataTable(".table");
+});
 
 
 
@@ -47,8 +46,6 @@ function changeStatus(orderId, btn) {
     }
 
     let qty = $(row).find("td:eq(4)").text(); //* acquiring quantity
-
-    console.log(statusId);
 
 
     $.ajax({
@@ -197,53 +194,51 @@ function subtractCountToProduct() {
 
 
 $("#category-filter").change( function() {
-    
+    requestSearch();
+})
+
+$("#apply-btn").on("click", function() {
+    requestSearch();    
+});
+
+$("#condition").change( function() {
+    requestSearch(); 
+});
+
+$("#price-order").change( function() {
+    requestSearch();
+});
+
+
+function requestSearch() {
     let search = $("#searchField").val();
-    let category = $(this).val();
+    let category = $("#category-filter").val();
+    let min = $("#min").val();
+    let max = $("#max").val();
+    let condition = $("#condition").val();
+    let priceOrder = $("#price-order").val();
 
     let link = "products.php?";
 
     if(search) 
-        link += "search="+search;
+        link += `search=${search}&`;
 
     if(category)
-        link += "&category="+category;
+        link += `category=${category}&`;
+
+    if(min)
+        link += `min=${min}&`;
+
+    if(max)
+        link += `max=${max}&`;
+
+    if(condition)
+        link += `condition=${condition}&`;
+
+    if(priceOrder) 
+        link += `price_order=${priceOrder}`;
 
     window.location.href = link;
-
-    // requestSearch(search, category);
-})
-
-function requestSearch(search, category) {
-
-    
-    // let searchR = (search) ? search : '';
-    // let catR = (category) ? category : 0;
-
-    let link = "../operations/filterProducts.php?";
-
-    if(search) 
-        link += "search="+search;
-
-    if(category)
-        link += "category="+category;
-
-    loadPHP(".product-body", link);
-
-    // $.ajax({
-    //     url: '../operations/filterProducts.php',
-    //     type: 'GET',
-    //     data: {search: searchR, category_name: catR},
-    //     success: function(result) {
-    //         // alert(result);
-    //        loadPHP(".product-body", '../operations/filterProducts.php?');
-
-    //     },
-
-    //     error: function() {
-    //         console.log("error");
-    //     }
-    // });
 }
 
 function trashItem(productID, productName) {

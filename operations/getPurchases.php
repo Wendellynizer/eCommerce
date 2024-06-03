@@ -1,7 +1,7 @@
 <?php
 require_once "../sessionCheck.php";
 
-$stmt = $conn->prepare("SELECT * FROM purchases_view WHERE order_by = ?");
+$stmt = $conn->prepare("SELECT * FROM purchases_view WHERE order_by = ? ORDER BY order_date_time DESC");
 $stmt->bind_param("i", $_SESSION["user"]["user_id"]);
 
 if(!$stmt->execute()) 

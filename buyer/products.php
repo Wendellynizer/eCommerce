@@ -3,21 +3,27 @@ require_once "../sessionCheck.php";
 
 $catResult = $conn->query("SELECT * FROM category ORDER BY category_name");
 
+// initializing
+$search = (isset($_GET["search"]))? urlencode($_GET["search"]) : '';
 
-$search = (isset($_GET["search"]))? $_GET["search"] : "";
-$catSearch = (isset($_GET["category"]))? $_GET["category"] : 0;
+$catSearch = (isset($_GET["category"]))? urlencode($_GET["category"]) : '%';
+$min = (isset($_GET["min"]))? $_GET["min"] : 0;
+$max = (isset($_GET["max"]))? $_GET["max"] : 99999999;
+$condition = (isset($_GET["condition"]))? $_GET["condition"] : '%';
+
+$priceOrder = "";
+
+if(isset($_GET["price_order"])) {
+    $priceOrder = ($_GET["price_order"] == 'lh') ? "ORDER BY price ASC" : "ORDER BY price DESC";
+}
 
 
-$result = $conn->query("CALL RetrieveProducts('{$search}', '{$catSearch}')");
-
-// if(!isset($_GET["search"])) {
-//     $result = $conn->query("SELECT * FROM products_view LIMIT 12");
-// } else {
-
-    
-// }
-
-
+$result = $conn->query(
+    "SELECT * FROM products_view 
+    WHERE product_name LIKE CONCAT('%', '{$search}', '%') 
+    AND category_id LIKE CONCAT('%', '{$catSearch}', '%') 
+    AND price BETWEEN {$min} AND {$max}
+    AND product_condition LIKE CONCAT('{$condition}', '%') $priceOrder");
 ?>
 
 <!DOCTYPE html>
@@ -94,10 +100,10 @@ $result = $conn->query("CALL RetrieveProducts('{$search}', '{$catSearch}')");
                 <div>
                     <label for="category_filter">By Category</label>
                     <select name="category_filter" id="category-filter" class="form-select rounded-0 mt-2">
-                        <option value="0" <?php echo ($catSearch == 0) ? 'selected' : '' ?>>All</option>
+                        <option value="" <?php echo ($catSearch == '%') ? 'selected' : '' ?>>All</option>
                         <?php
                         while($cat = $catResult->fetch_assoc()) {
-                            echo "<option value='{$cat["category_name"]}' ". (($cat["category_name"] == $catSearch) ? 'selected' : '') .">{$cat["category_name"]}</option>";
+                            echo "<option value='". $cat["category_id"] ."' ". (($cat["category_id"] == $catSearch) ? 'selected' : '') .">{$cat["category_name"]}</option>";
                         }
                         
                         ?>
@@ -106,36 +112,33 @@ $result = $conn->query("CALL RetrieveProducts('{$search}', '{$catSearch}')");
                 
                 <div class="mt-5">
                     <label for="price_filter">Price Range</label>
-                    <input type="number" name="" id="" placeholder="Min" class="form-control rounded-0 mt-2">
-                    <input type="number" name="" id="" placeholder="Max" class="form-control rounded-0 mt-2">
+                    <input type="number" name="min" id="min" placeholder="Min" class="form-control rounded-0 mt-2" value="<?php echo ($min != 0)? $min : '' ?>">
+                    <input type="number" name="max" id="max" placeholder="Max" class="form-control rounded-0 mt-2" value="<?php echo ($max != 99999999)? $max : '' ?>">
                     
-                    <button class="btn btn-primary mt-4 rounded-0 w-100">Apply</button>
+                    <button class="btn btn-primary mt-4 rounded-0 w-100" id="apply-btn">Apply</button>
                 </div>
             </div>
 
             <div class="col-10">
                 <div class="row">
-                    <h5 class="mb-5">Search results for '<span class="text-primary"><?php echo (isset($search) ? $search : '') ?></span>'</h5>
+                    <h5 class="mb-5">Search results for '<span class="text-primary"> </span>'</h5>
 
                     <div class="filter-container d-flex align-items-center gap-2">
                         <!-- all filters here -->
                         <span class="me-2">Sort by</span>
-
-                        <button class="btn btn-outline-primary rounded-0 display: inline;">Relevance</button>
-                        <button class="btn btn-outline-primary rounded-0 display: inline;">Latest</button>
                         
-                        <select class="form-select rounded-0 w-25" name="price_filter">
-                            <option>Price</option>
-                            <option>Price: Low to High</option>
-                            <option>Price: High to Low</option>
+                        <select class="form-select rounded-0 w-25" name="price_order" id="price-order">
+                            <option <?php echo ($priceOrder == '') ? 'selected' : '' ?>>Price</option>
+                            <option value="lh" <?php echo ($priceOrder == 'lh') ? 'selected' : '' ?>>Price: Low to High</option>
+                            <option value="hl" <?php echo ($priceOrder == 'hl') ? 'selected' : '' ?>>Price: High to Low</option>
                         </select>
 
-                        <select class="form-select rounded-0 w-25" name="price_filter">
-                            <option>Quality: All</option>
-                            <option>Quality: Very Good</option>
-                            <option>Quality: Good</option>
-                            <option>Quality: Fair</option>
-                            <option>Quality: Bad</option>
+                        <select class="form-select rounded-0 w-25" name="condition" id="condition">
+                            <option value="%" <?php echo ($condition == '%') ? 'selected' : '' ?>>Quality: All</option>
+                            <option value="Very%Good" <?php echo ($condition == 'Very%Good') ? 'selected' : '' ?>>Quality: Very Good</option>
+                            <option value="Good" <?php echo ($condition == 'Good') ? 'selected' : '' ?>>Quality: Good</option>
+                            <option value="Fair" <?php echo ($condition == 'Fair') ? 'selected' : '' ?>>Quality: Fair</option>
+                            <option value="Bad" <?php echo ($condition == 'Bad') ? 'selected' : '' ?>>Quality: Bad</option>
                         </select>
                     </div>
 
@@ -176,7 +179,8 @@ $result = $conn->query("CALL RetrieveProducts('{$search}', '{$catSearch}')");
                             
 
                                 <div class='card-body d-flex flex-column'>
-                                    <h5 class='card-title product-name fw-bold'>{$row["product_name"]}</h5>
+                                    <h5 class='card-title product-name fw-bold' style='height: 43px'>{$row["product_name"]}</h5>
+                                    <p>{$row["category_name"]}</p>
 
                                     <div class='price-container flex-grow-1 d-flex align-items-end'>
                                         <div class='d-flex align-items-center justify-content-between w-100'>

@@ -1,8 +1,5 @@
 <?php
 require_once "../sessionCheck.php";
-
-// make all unread
-$conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["user"]["user_id"]}");
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +31,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                         <div class="notification ms-5 d-flex align-items-center position-relative">
                             <a href="notifications.php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                            <span class="text-dark" style="user-select: none;"><?php include_once "../includes/unreadNotif.php" ?></span>
+                            <span class="text-dark notif-count" style="user-select: none;"></span>
                         </div>
 
                         <!-- profile -->
@@ -59,7 +56,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                     <div class="notification ms-5 d-flex align-items-center position-relative">
                         <a href="notifications.php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                        <span class="text-dark" style="user-select: none;">99</span>
+                        <span class="text-dark notif-count" style="user-select: none;">99</span>
                     </div>
 
                     <i class="fa-solid fa-bars h2"></i>
