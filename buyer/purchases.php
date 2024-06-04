@@ -64,23 +64,7 @@ require_once "../sessionCheck.php";
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-3 search-nav">
-            <div class="container-xxl d-flex justify-content-center align-items-center gap-5">
-                <form action="" class="w-100" style="max-width: 1000px">
-                    <div class="input-group ">
-                        <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
-
-                        <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-
-                <a href="" class="cart-container text-decoration-none d-flex align-items-center gap-2">
-                    <span class="text-light"><i class="fa-solid fa-cart-shopping h4"></i></span>
-
-                    <span class="text-light cart-count" style="user-select: none;">0</span>
-                </a>
-            </div>
-        </div>
+      <?php include_once "../includes/searchBar.php" ?>
     </header>
 
     <section class="padding-from-nav container-xxl">
@@ -88,26 +72,15 @@ require_once "../sessionCheck.php";
         <!-- contents -->
         <div class="row">
             <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <a href="user.php" class="text-dark text-decoration-none">Account Profile</a>
-                <a href="purchases.php" class="text-dark text-decoration-none fw-bold active">Purchases</a>
-                <a href="cart.php" class="text-dark text-decoration-none">My Cart</a>
-                <a href="notifications.php" class="text-dark text-decoration-none">Notifications</a>
+                <a href="user.php" class="text-dark text-decoration-none">Account Profile <i class="fa-solid fa-user ms-3"></i></a>
+                <a href="purchases.php" class="text-dark text-decoration-none fw-bold active">Purchases <i class="fa-solid fa-bag-shopping ms-3"></i></a>
+                <a href="cart.php" class="text-dark text-decoration-none">My Cart <i class="fa-solid fa-cart-shopping ms-3"></i></a>
+                <a href="notifications.php" class="text-dark text-decoration-none">Notifications <i class="fa-solid fa-bell ms-3"></i></a>
             </div>
 
             <div class="col-md-10 p-4" style="background-color: white; max-width: 1080px">
                 <div class="border-bottom mb-3 d-flex justify-content-between">
                     <h3 class="fw-bold">My Purchase(s) <i class="fa-solid fa-bag-shopping"></i></h3>
-
-                    <div class="w-25 d-flex align-items-center gap-3">
-                        <select class="form-select rounded-0" id="status-filter">
-                            <option value="">All</option>
-                            <option value="">Pending</option>
-                            <option value="">Shipping</option>
-                            <option value="">Delivering</option>
-                            <option value="">Complete</option>
-                            <option value="">Cancelled</option>
-                        </select>
-                    </div>
                 </div>
 
                 <!-- contents -->

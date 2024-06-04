@@ -1,7 +1,7 @@
 <?php
 require_once "sessionCheck.php";
 
-$result = $conn->query("SELECT * FROM products_view LIMIT 8");
+$result = $conn->query("SELECT * FROM products_view WHERE deleted_at IS NULL LIMIT 8");
 ?>
 
 <!DOCTYPE html>

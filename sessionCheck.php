@@ -7,6 +7,12 @@ if(!$_SESSION["user"]) {
     exit;
 }
 
+if(empty($_SESSION["user"]["username"])) {
+    header("location: buyer/user.php");
+    exit;
+}
+
+
 
 // do some redirecting when session is active
 

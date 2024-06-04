@@ -52,7 +52,7 @@ $notif = $conn->query("SELECT COUNT(*) AS unread_notif FROM notifications WHERE 
                             <a href="notifications
                             .php" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                            <span class="text-dark" style="user-select: none;">99</span>
+                            <span class="text-dark notif-count" style="user-select: none;">99</span>
                         </div>
                         
                         <!-- profile -->
@@ -77,7 +77,7 @@ $notif = $conn->query("SELECT COUNT(*) AS unread_notif FROM notifications WHERE 
                     <div class="notification ms-5 d-flex align-items-center position-relative">
                         <a href="" class="text-dark"><i class="fa-solid fa-bell h3"></i></a>
 
-                        <span class="text-dark" style="user-select: none;"><?php echo $notif["unread_notif"] ?></span>
+                        <span class="text-dark notif-count" style="user-select: none;"></span>
                     </div>
 
                     <i class="fa-solid fa-bars h2"></i>
@@ -85,23 +85,7 @@ $notif = $conn->query("SELECT COUNT(*) AS unread_notif FROM notifications WHERE 
             </div>
         </nav>
 
-        <div class="container-fluid bg-primary py-3 search-nav">
-            <div class="container-xxl d-flex justify-content-center align-items-center gap-5">
-                <form action="" class="w-100" style="max-width: 1000px">
-                    <div class="input-group ">
-                        <input type="text" name="" placeholder="Search here..." class="form-control rounded-0">
-
-                        <button class="btn bg-dark rounded-0 text-light"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-
-                <a href="" class="cart-container text-decoration-none d-flex align-items-center gap-2">
-                    <span class="text-light"><i class="fa-solid fa-cart-shopping h4"></i></span>
-
-                    <span class="text-light" style="user-select: none;">99</span>
-                </a>
-            </div>
-        </div>
+        <?php include_once "../includes/searchBar.php" ?>
     </header>
 
     <section class="padding-from-nav container-xxl">
@@ -109,10 +93,10 @@ $notif = $conn->query("SELECT COUNT(*) AS unread_notif FROM notifications WHERE 
         <!-- contents -->
         <div class="row">
             <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <a href="user.php" class="text-dark text-decoration-none fw-bold active">Account Profile</a>
-                <a href="purchases.php" class="text-dark text-decoration-none">Purchases</a>
-                <a href="cart.php" class="text-dark text-decoration-none">My Cart</a>
-                <a href="notifications.php" class="text-dark text-decoration-none">Notifications</a>
+                <a href="user.php" class="text-dark text-decoration-none fw-bold active">Account Profile <i class="fa-solid fa-user ms-3"></i></a>
+                <a href="purchases.php" class="text-dark text-decoration-none" >Purchases <i class="fa-solid fa-bag-shopping ms-3"></i></a>
+                <a href="cart.php" class="text-dark text-decoration-none" >My Cart <i class="fa-solid fa-cart-shopping ms-3"></i></a>
+                <a href="notifications.php" class="text-dark text-decoration-none">Notifications <i class="fa-solid fa-bell ms-3"></i></a>
             </div>
 
             <div class="col-md-10 p-4">

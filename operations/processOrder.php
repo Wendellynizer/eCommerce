@@ -12,37 +12,16 @@ if(isset($_POST["submit"])) {
 
     if($stmt->execute()) {
        
-        $msg = $_SESSION['user']['username']." has placed an order";
-        $notif_type = "Customer Order";
+        // $msg = $_SESSION['user']['username']." has placed an order";
+        // $notif_type = "Customer Order";
 
-        $stmt2 = $conn->prepare("
-            INSERT INTO notifications (user_id, notif_type, message) 
-            SELECT u.user_id, ?, ? FROM users u INNER JOIN products p 
-            WHERE ");
+        // $stmt2 = $conn->prepare("
+        //     INSERT INTO notifications (user_id, notif_type, message) 
+        //     SELECT u.user_id, ?, ? FROM users u INNER JOIN products p 
+        //     WHERE ");
 
-        $stmt2->bind_param("iss",  $_SESSION['user']['user_id'], $notif_type, $msg);
-        $stmt2->execute();
-
-        // get user, seller, and product data
-        // $result = $conn->query("SELECT username, seller_id, product_name, quantity, total_amount FROM order_details WHERE username='{$_SESSION["user"]["username"]}' AND order_date_time = '{$currentDateTime}'");
-        // $row = $result->fetch_assoc();
-
-        // $customerMsg = "Your order of ". $row["product_name"] ." has been shipped. <a href='purchases.php'>See purchases.</a>";
-        // $orderProcessing = "Order Processing";
-        // $sellerMsg = $row["username"]. " has placed an order(s). <a href='orders.php'>See orders now</a>";
-        // $customerOrder = "Customer Order";
-
-
-        // $stmt2 = $conn->prepare("CALL AddNotification(?,?,?)");
-        // $stmt2->bind_param("iss", $_SESSION["user"]["user_id"], $orderProcessing, $customerMsg);
+        // $stmt2->bind_param("iss",  $_SESSION['user']['user_id'], $notif_type, $msg);
         // $stmt2->execute();
-
-        // $stmt3 = $conn->prepare("CALL AddNotification(?,?,?)");
-        // $stmt3->bind_param("iss",$row["seller_id"], $customerOrder, $sellerMsg);
-        // $stmt3->execute();
-
-        // $stmt2->close();
-        // $stmt3->close();
     }
 
     $stmt->close();

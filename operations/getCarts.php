@@ -2,7 +2,7 @@
 
 require_once "../sessionCheck.php";
 
-$stmt = $conn->prepare("SELECT * FROM cart_details WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT * FROM cart_details WHERE deleted_at IS NULL AND user_id = ?");
 $stmt->bind_param("i", $_SESSION["user"]["user_id"]);
 
 if(!$stmt->execute()) 
@@ -27,13 +27,13 @@ while($row = $result->fetch_assoc()) {
         <td class='align-middle'>₱ <span class='price'>{$row["price"]}</span></td>
         <td class='align-middle'>
             <div class='btn-group d-flex justify-content-center' role='group'>
-                <button type='button' class='btn btn-outline-secondary rounded-0 subtract' style='max-width: 40px;' onclick='subtract(this)'>-</button>
-                <input type='text' name=' id=' class='form-control rounded-0 w-25 text-center qty-field' value='".$row["qty"]."'>
-                <button type='button' class='btn btn-outline-secondary rounded-0 add' style='max-width: 40px;' onclick='add(this)'>+</button>
+                <button type='button' class='btn btn-outline-secondary rounded-0 subtract' style='max-width: 40px;' onclick='subtract(this, ".$row["product_id"].")'>-</button>
+                <input type='text' name=' id=' class='form-control rounded-0 w-25 text-center qty-field' value='".$row["qty"]."' readonly>
+                <button type='button' class='btn btn-outline-secondary rounded-0 add' style='max-width: 40px;' onclick='add(this, ".$row["product_id"].")'>+</button>
             </div>
             
         </td>
-        <td class='align-middle total-amount'>₱ <span class='total'>999999</span></td>
+        <td class='align-middle total-amount'>₱ <span class='total'>{$row["total_amount"]}</span></td>
         <td class='align-middle'>
             <div>
                 <a href='checkout.php?id={$row["product_id"]}&qty={$row["qty"]}' class='btn btn-sm btn-primary rounded-0')>Checkout</a>

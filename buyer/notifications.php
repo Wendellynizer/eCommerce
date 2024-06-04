@@ -75,10 +75,10 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
         <!-- contents -->
         <div class="row">
             <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <a href="user.php" class="text-dark text-decoration-none">Account Profile</a>
-                <a href="purchases.php" class="text-dark text-decoration-none">Purchases</a>
-                <a href="cart.php" class="text-dark text-decoration-none">My Cart</a>
-                <a href="notifications.php" class="text-dark text-decoration-none fw-bold active">Notifications</a>
+                <a href="user.php" class="text-dark text-decoration-none">Account Profile <i class="fa-solid fa-user ms-3"></i></a>
+                <a href="purchases.php" class="text-dark text-decoration-none">Purchases <i class="fa-solid fa-bag-shopping ms-3"></i></a>
+                <a href="cart.php" class="text-dark text-decoration-none">My Cart <i class="fa-solid fa-cart-shopping ms-3"></i></a>
+                <a href="notifications.php" class="text-dark text-decoration-none fw-bold active">Notifications <i class="fa-solid fa-bell ms-3"></i></a>
             </div>
 
             <div class="col-md-10 p-4" style="background-color: white; max-width: 1080px">
@@ -114,7 +114,7 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                                     $icon = "fa-cart-flatbed";
                                    
                                     break;
-                                case "Order Delivering":
+                                case "Order Delivery":
                                     $icon = "fa-truck";
                                     break;
                                 case "Order Complete":
@@ -141,47 +141,6 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
                         }
                     }
                     ?>
-
-
-                    <!-- <div class="border border-bottom d-flex align-items-center gap-5 py-3 px-3 mb-2">
-                        <i class="fa-solid fa-gears h1"></i>
-
-                        <div class="w-100">
-                            <p class="fw-bold">Order Processing</p>
-                            <p>Your order of {Product Name} is processing.</p>
-                            <p style="font-size: 0.7rem" class="text-end">05-31-2024 14:30</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-bottom d-flex align-items-center gap-5 py-3 px-3 mb-2">
-                        <i class="fa-solid fa-cart-flatbed h1"></i>
-
-                        <div class="w-100">
-                            <p class="fw-bold">Order Shipped</p>
-                            <p>Your order of {Product Name} has been placed.</p>
-                            <p style="font-size: 0.7rem" class="text-end">05-31-2024 14:30</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-bottom d-flex align-items-center gap-5 py-3 px-3 mb-2">
-                        <i class="fa-solid fa-truck h1"></i>
-
-                        <div class="w-100">
-                            <p class="fw-bold">Order Delivery</p>
-                            <p>Your order of {Product Name} is out for delivery. Please prepare an amount of {Price}.</p>
-                            <p style="font-size: 0.7rem" class="text-end">05-31-2024 14:30</p>
-                        </div>
-                    </div>
-
-                    <div class="border border-bottom d-flex align-items-center gap-5 py-3 px-3 mb-2">
-                        <i class="fa-solid fa-cart-arrow-down h1"></i>
-
-                        <div class="w-100">
-                            <p class="fw-bold">Customer Order</p>
-                            <p>{Customer Name} has placed an order(s). See orders now</p>
-                            <p style="font-size: 0.7rem" class="text-end">05-31-2024 14:30</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -189,9 +148,5 @@ $conn->query("UPDATE notifications SET is_read = 0 WHERE user_id={$_SESSION["use
 
 
 </body>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
-<script src="../assets/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/user.js"></script>
 
 </html>

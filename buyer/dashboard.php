@@ -4,9 +4,9 @@ require_once "../getConnection.php";
 
 $stmt = $conn->query("SELECT COUNT(*) as total_products FROM products WHERE product_of = {$_SESSION['user']['user_id']} GROUP BY product_of");
 $results = $stmt->fetch_assoc();
-$total_products = $results["total_products"];
+$total_products = (empty($results["total_products"])? 0 : $results["total_products"]); 
 
-$stmt = $conn->query("SELECT SUM(total_amount) as total_sales FROM order_details WHERE seller_id = {$_SESSION['user']['user_id']}");
+$stmt = $conn->query("SELECT SUM(total_amount) as total_sales FROM order_details WHERE seller_id = {$_SESSION['user']['user_id']} AND status='Complete'");
 $results = $stmt->fetch_assoc();
 $total_sales = $results["total_sales"];
 ?>
@@ -103,7 +103,7 @@ $total_sales = $results["total_sales"];
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Total Sales</h5>
-                        <p class="card-text display-4">₱ <?php echo $total_sales ?></p>
+                        <p class="card-text display-4">₱ <?php echo (empty($total_sales))? 0 : $total_sales ?></p>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,9 @@ $result = $conn->query(
     WHERE product_name LIKE CONCAT('%', '{$search}', '%') 
     AND category_id LIKE CONCAT('%', '{$catSearch}', '%') 
     AND price BETWEEN {$min} AND {$max}
-    AND product_condition LIKE CONCAT('{$condition}', '%') $priceOrder");
+    AND product_condition LIKE CONCAT('{$condition}', '%') 
+    AND deleted_at IS NULL
+    $priceOrder");
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +69,7 @@ $result = $conn->query(
 
                             <ul class="dropdown-menu dropdown-menu-end rounded-1 py-0 profile-dropdown">
                                 <li><a class="dropdown-item py-2" href="user.php">My Account</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Purchases</a></li>
+                                <li><a class="dropdown-item py-2" href="purchases.php">Purchases</a></li>
                                 <li><a class="dropdown-item py-2" href="../operations/logout.php">Logout</a></li>
                             </ul>
                         </div>

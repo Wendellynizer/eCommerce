@@ -10,8 +10,7 @@ loadPHP(".purchase-body", "../operations/getPurchases.php");
 
 
 
-//init price for cart
-// alert($(".qty-field").val());
+
 
 // AJAX Change Status
 function changeStatus(orderId, btn) {
@@ -153,20 +152,18 @@ function loadPHP(className, url) {
     $(className).load(url);
 }
 
-function add(btn) {
+function add(btn, id) {
     let row = $(btn).closest("tr");
     let qtyField = $(row).find(".qty-field");
     let qty = parseInt(qtyField.val());
 
-    let priceVal = $(row).find(".price").html();
-
     qty += 1;
     qtyField.val(qty);
 
-    $(".total").html(priceVal * qty);
+    updateQty(qty, id);
 }
 
-function subtract(btn) {
+function subtract(btn, id) {
     let row = $(btn).closest("tr");
     let qtyField = $(row).find(".qty-field");
     let qty = parseInt(qtyField.val());
@@ -176,6 +173,19 @@ function subtract(btn) {
 
     qty -= 1;
     qtyField.val(qty);
+
+    updateQty(qty, id);
+}
+
+function updateQty(qty, id) {
+    $.ajax({
+        url: "../operations/updateQty.php",
+        type: "post",
+        data: {pID: id, qty: qty},
+        success: function(result) {
+            window.location.href="cart.php";
+        }
+    })
 }
 
 function addCountToProduct() {
@@ -306,7 +316,8 @@ function restoreTrash(productID, productName) {
                 type: "POST",
                 data: {product_id: productID},
                 success: function(result) {
-                    loadPHP(".trash-body", "../operations/fetchTrash.php");
+                    // loadPHP(".trash-body", "../operations/fetchTrash.php");
+                    window.location.reload();
                 }
             });
         }

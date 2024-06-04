@@ -28,6 +28,11 @@ if(isset($_POST["login"])) {
     }
 
 
+    if(empty($_SESSION["user"]["username"])){
+        header("location: ../buyer/user.php");
+        exit;
+    }
+    
     header("location: ../index.php");
 } else {
     header("location: ../buyer/signin.php");

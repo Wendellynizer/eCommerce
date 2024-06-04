@@ -72,11 +72,9 @@ $category = $conn->query("SELECT * FROM category;");
 
         <!-- contents -->
         <div class="row">
-            <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <p class="h5 text-align-right">Filling Suggestions</p>
-            </div>
 
-            <div class="col-md-10 p-4">
+
+            <div class="col-md-12 bg-white shadow-sm p-4">
                 <p class="h4 fw-bold">Product Information</p>
                 <hr>
                 

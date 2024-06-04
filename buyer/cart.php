@@ -73,10 +73,10 @@ require_once "../sessionCheck.php";
         <!-- contents -->
         <div class="row">
             <div class="col-2 d-flex flex-column align-items-end gap-3 pt-4 pe-5">
-                <a href="user.php" class="text-dark text-decoration-none">Account Profile</a>
-                <a href="purchases.php" class="text-dark text-decoration-none">Purchases</a>
-                <a href="cart.php" class="text-dark text-decoration-none fw-bold active">My Cart</a>
-                <a href="notifications.php" class="text-dark text-decoration-none">Notifications</a>
+                <a href="user.php" class="text-dark text-decoration-none">Account Profile <i class="fa-solid fa-user ms-3"></i></a>
+                <a href="purchases.php" class="text-dark text-decoration-none">Purchases <i class="fa-solid fa-bag-shopping ms-3"></i></a>
+                <a href="cart.php" class="text-dark text-decoration-none fw-bold active">My Cart <i class="fa-solid fa-cart-shopping ms-3"></i></a>
+                <a href="notifications.php" class="text-dark text-decoration-none">Notifications <i class="fa-solid fa-bell ms-3"></i></a>
             </div>
 
             <div class="col-md-10 p-4" style="background-color: white; max-width: 1080px">

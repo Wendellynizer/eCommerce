@@ -24,7 +24,7 @@ $record = $record_count->fetch_assoc();
 $total_pages = ceil($record["total_records"] / $record_limit);
 
 // query
-$stmt = $conn->prepare("SELECT order_id, product_name, firstname, lastname, quantity, order_date_time, status, total_amount FROM order_details WHERE seller_id = ? LIMIT ?, ?");
+$stmt = $conn->prepare("SELECT order_id, product_name, firstname, lastname, quantity, order_date_time, status, total_amount FROM order_details WHERE seller_id = ? AND deleted_at IS NULL LIMIT ?, ?");
 $stmt->bind_param("iii", $_SESSION['user']['user_id'], $offset, $record_limit);
 $stmt->execute();
 
@@ -197,7 +197,7 @@ $sql = $stmt->get_result();
                                     <td class='align-middle'>{$prod['lastname']}</td>
                                     <td class='align-middle'>{$prod['product_name']}</td>
                                     <td class='align-middle text-center'>{$prod['quantity']}</td>
-                                    <td class='align-middle'>{$prod['order_date_time']}</td>
+                                    <td class='align-middle'>".date( "F d, Y g:i a", strtotime($prod['order_date_time']))."</td>
                                     <td class='align-middle'><span class='badge " . $badgeColor . "'>{$prod['status']}</span></td>
                                     <td class='align-middle'>₱ {$prod['total_amount']}</td>
                                     <td class='align-middle gap-2'>
